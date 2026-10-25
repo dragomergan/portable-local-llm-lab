@@ -1,0 +1,56 @@
+# ---------------------------------------------------------------------------
+# Operating system and editor files
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# ---------------------------------------------------------------------------
+# Local helper files (contain personal paths, not part of the project)
+# ---------------------------------------------------------------------------
+Directory.bat
+directory_tree.txt
+
+# ---------------------------------------------------------------------------
+# Programs and models: downloaded by each user (see the README files)
+# ---------------------------------------------------------------------------
+*.gguf
+win/*.exe
+mac/koboldcpp*
+linux/koboldcpp*
+
+# ---------------------------------------------------------------------------
+# Third-party material that must NOT be redistributed
+# ---------------------------------------------------------------------------
+data/microsoft/
+**/microsoft_*
+**/*Microsoft*Terminology*
+
+# ---------------------------------------------------------------------------
+# Novel texts: download them yourself (see data/README.md).
+# The ready-made databases (vectors.npy, chunks.json, meta.json) ARE published,
+# so that people who cannot build them can still use the examples.
+# data/anna_karenina_v2 (modified text, Stepan -> Sami) is published on purpose.
+# ---------------------------------------------------------------------------
+data/anna_karenina/*.txt
+
+# The glossary database is not published: build it yourself (README, section 8.3)
+data/terminology/vectors.npy
+data/terminology/chunks.json
+data/terminology/meta.json
+
+# Unfinished builds
+*.partial
+*.partial.*
+
+# ---------------------------------------------------------------------------
+# Output of the test scripts and personal work
+# ---------------------------------------------------------------------------
+lore_report.md

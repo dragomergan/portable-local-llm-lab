@@ -1,0 +1,15 @@
+# Normalise line endings, but keep the ones the start scripts need.
+* text=auto
+
+*.sh        text eol=lf
+*.command   text eol=lf
+*.bat       text eol=crlf
+*.py        text eol=lf
+*.md        text
+*.html      text
+*.json      text
+
+# Binary files
+*.npy   binary
+*.gguf  binary
+*.exe   binary
