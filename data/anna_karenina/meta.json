@@ -1,0 +1,13 @@
+{
+  "created": "2026-10-25T15:03:27+00:00",
+  "source_files": [
+    "anna_karenina.txt"
+  ],
+  "chunks": 1484,
+  "skipped_chunks": 0,
+  "vector_size": 768,
+  "chunk_words": 300,
+  "overlap_words": 50,
+  "gutenberg_stripped": true,
+  "embedding_url": "http://localhost:5001/v1/embeddings"
+}

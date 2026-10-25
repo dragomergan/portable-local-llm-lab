@@ -1,0 +1,1916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sample English-Turkish IT glossary (100 entries) for the Portable Local LLM Lab.
+  Written from scratch for this project: the definitions and example sentences are original.
+  Released under CC0 1.0 (public domain dedication): https://creativecommons.org/publicdomain/zero/1.0/
+  Structure follows TBX-Basic (ISO 30042). It has not been checked against the official schema.
+-->
+<tbx style="dca" type="TBX-Basic" xml:lang="en" xmlns="urn:iso:std:iso:30042:ed-2">
+  <tbxHeader>
+    <fileDesc>
+      <titleStmt><title>Sample English-Turkish IT Glossary</title></titleStmt>
+      <sourceDesc><p>Original sample created for the Portable Local LLM Lab project. CC0 1.0.</p></sourceDesc>
+    </fileDesc>
+  </tbxHeader>
+  <text>
+    <body>
+      <conceptEntry id="c001">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The record that identifies a user or organization in a system and stores their sign-in details and settings.</descrip>
+          <termSec>
+            <term>account</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Create an account to save your progress.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>hesap</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">İlerlemenizi kaydetmek için bir hesap oluşturun.</descrip>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c002">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A finite sequence of well-defined steps for solving a problem or carrying out a computation.</descrip>
+          <termSec>
+            <term>algorithm</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>algoritma</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c003">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A program designed to help a user carry out a specific task.</descrip>
+          <termSec>
+            <term>application</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>uygulama</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c004">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A document, picture, or other file that travels along with an email message.</descrip>
+          <termSec>
+            <term>attachment</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Open the attachment to read the report.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>ek</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Raporu okumak için eki açın.</descrip>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c005">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The process of checking that a user or device is who or what it claims to be.</descrip>
+          <termSec>
+            <term>authentication</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>kimlik doğrulama</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c006">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The process of deciding which actions or resources an authenticated user may use.</descrip>
+          <termSec>
+            <term>authorization</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>yetkilendirme</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c007">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A copy of data that is stored separately so that it can be restored after loss or damage.</descrip>
+          <termSec>
+            <term>backup</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Make a backup before you update the system.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>yedek</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Sistemi güncellemeden önce bir yedek alın.</descrip>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c008">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The maximum amount of data that a connection can carry in a given period of time.</descrip>
+          <termSec>
+            <term>bandwidth</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>bant genişliği</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c009">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A saved shortcut to a web page or to a position in a document.</descrip>
+          <termSec>
+            <term>bookmark</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>yer imi</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c010">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The process of starting a computer and loading its operating system.</descrip>
+          <termSec>
+            <term>boot</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>önyükleme</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c011">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A program that is used to view and move between web pages.</descrip>
+          <termSec>
+            <term>browser</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>tarayıcı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c012">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A flaw in software that makes it behave in an unintended way.</descrip>
+          <termSec>
+            <term>bug</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>hata</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c013">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">An on-screen control that a user selects to start an action.</descrip>
+          <termSec>
+            <term>button</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>düğme</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c014">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A small, fast store that keeps copies of recently or often used data so that they can be fetched again quickly.</descrip>
+          <termSec>
+            <term>cache</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Clear the cache if the page does not load correctly.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>önbellek</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Sayfa doğru yüklenmezse önbelleği temizleyin.</descrip>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c015">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A small box that a user can select or clear to turn an option on or off.</descrip>
+          <termSec>
+            <term>checkbox</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>onay kutusu</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c016">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A computer or program that requests services from a server.</descrip>
+          <termSec>
+            <term>client</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>istemci</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c017">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">An online service that keeps data on remote servers that users reach through the internet.</descrip>
+          <termSec>
+            <term>cloud storage</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>bulut depolama</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c018">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A screen area where users give instructions to the computer by typing lines of text.</descrip>
+          <termSec>
+            <term>command line</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>komut satırı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c019">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A program that translates source code into machine code or another lower-level form.</descrip>
+          <termSec>
+            <term>compiler</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>derleyici</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c020">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Reducing the size of data so that it takes less storage space or transfers faster.</descrip>
+          <termSec>
+            <term>compression</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>sıkıştırma</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c021">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The set of options and settings that determine how a system or program behaves.</descrip>
+          <termSec>
+            <term>configuration</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>yapılandırma</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c022">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A link between two devices, programs, or systems that lets them exchange data.</descrip>
+          <termSec>
+            <term>connection</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>bağlantı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c023">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A small file that a website stores on a user's device to remember information about a visit.</descrip>
+          <termSec>
+            <term>cookie</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>çerez</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c024">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The symbol on a screen that shows where the next action or text input will take place.</descrip>
+          <termSec>
+            <term>cursor</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>imleç</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c025">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A single screen that gathers key information and controls in one place.</descrip>
+          <termSec>
+            <term>dashboard</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>pano</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c026">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Facts, figures, or other information in a form that a computer can store and process.</descrip>
+          <termSec>
+            <term>data</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>veri</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c027">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Structured information kept in a system so that it can be stored, searched, and changed efficiently.</descrip>
+          <termSec>
+            <term>database</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>veritabanı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c028">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Tracking down why a program misbehaves and correcting the cause.</descrip>
+          <termSec>
+            <term>debugging</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>hata ayıklama</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c029">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A setting or value that is used automatically unless the user chooses another one.</descrip>
+          <termSec>
+            <term>default</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>varsayılan</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c030">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The main screen of an operating system, on which icons, windows, and files are shown.</descrip>
+          <termSec>
+            <term>desktop</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>masaüstü</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c031">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A small window that asks the user for information or for a confirmation.</descrip>
+          <termSec>
+            <term>dialog box</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>iletişim kutusu</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c032">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A named space on a storage device that groups related files and can also hold other such spaces.</descrip>
+          <termSec>
+            <term>directory</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>dizin</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c033">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Not available for use; turned off so that it does not respond to the user.</descrip>
+          <termSec>
+            <term>disabled</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">The Save button is disabled until all fields are filled in.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>devre dışı</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Tüm alanlar doldurulana kadar Kaydet düğmesi devre dışıdır.</descrip>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c034">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Copying data from the internet or from another computer onto your own device.</descrip>
+          <termSec>
+            <term>download</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">The download will start automatically.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>indirme</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">İndirme otomatik olarak başlayacak.</descrip>
+          </termSec>
+          <termSec>
+            <term>download</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">deprecatedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c035">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Software that lets the operating system communicate with a hardware device.</descrip>
+          <termSec>
+            <term>driver</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>sürücü</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c036">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A message sent electronically over a network, or the system used to send such messages.</descrip>
+          <termSec>
+            <term>email</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>e-posta</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>e-mail</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">deprecatedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c037">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Scrambling information with a key so that anyone without the matching key cannot make sense of it.</descrip>
+          <termSec>
+            <term>encryption</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>şifreleme</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c038">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A notice that tells the user that something has gone wrong.</descrip>
+          <termSec>
+            <term>error message</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>hata iletisi</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>hata mesajı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c039">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A piece of stored information with its own name, kept on a disk or another device.</descrip>
+          <termSec>
+            <term>file</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>dosya</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c040">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The suffix at the end of a file name that shows the type of the file.</descrip>
+          <termSec>
+            <term>file extension</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>dosya uzantısı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c041">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The location of a file, written as a list of the folders that lead to it.</descrip>
+          <termSec>
+            <term>file path</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>dosya yolu</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c042">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A rule or tool that selects which items to show or process and hides the rest.</descrip>
+          <termSec>
+            <term>filter</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>filtre</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c043">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Software or hardware that filters the traffic entering or leaving a network and blocks what the rules do not allow.</descrip>
+          <termSec>
+            <term>firewall</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">The firewall blocked the connection.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>güvenlik duvarı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Güvenlik duvarı bağlantıyı engelledi.</descrip>
+          </termSec>
+          <termSec>
+            <term>firewall</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">deprecatedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c044">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A labeled place on a device where a user keeps related files and sub-folders.</descrip>
+          <termSec>
+            <term>folder</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>klasör</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c045">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A set of characters with a consistent design, size, and style.</descrip>
+          <termSec>
+            <term>font</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>yazı tipi</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>font</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c046">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The way in which data or text is arranged or structured.</descrip>
+          <termSec>
+            <term>format</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>biçim</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c047">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A named block of code that performs a task and can be used again and again.</descrip>
+          <termSec>
+            <term>function</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>işlev</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>fonksiyon</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c048">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A device or program that connects two networks that use different protocols.</descrip>
+          <termSec>
+            <term>gateway</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>ağ geçidi</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c049">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A hardware component that produces the images shown on a display.</descrip>
+          <termSec>
+            <term>graphics card</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>ekran kartı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c050">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A storage device that keeps data on rotating magnetic platters.</descrip>
+          <termSec>
+            <term>hard disk</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>sabit disk</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c051">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The physical parts of a computer system.</descrip>
+          <termSec>
+            <term>hardware</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>donanım</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c052">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Text or data placed at the top of a page, document, or message.</descrip>
+          <termSec>
+            <term>header</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>üst bilgi</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c053">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The main or first page of a website.</descrip>
+          <termSec>
+            <term>homepage</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>ana sayfa</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c054">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">An element in a document that leads to another location when it is selected.</descrip>
+          <termSec>
+            <term>hyperlink</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>köprü</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>bağlantı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c055">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A small picture that represents a file, program, or command.</descrip>
+          <termSec>
+            <term>icon</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>simge</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>ikon</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c056">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Data or signals that are sent into a computer or program.</descrip>
+          <termSec>
+            <term>input</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>girdi</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>giriş</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c057">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The point at which a user, program, or device interacts with another.</descrip>
+          <termSec>
+            <term>interface</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>arayüz</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>arabirim</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c058">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">An input device with keys that are used to type text and commands.</descrip>
+          <termSec>
+            <term>keyboard</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>klavye</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c059">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A portable computer with a built-in screen and keyboard.</descrip>
+          <termSec>
+            <term>laptop</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>dizüstü bilgisayar</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c060">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A collection of reusable code that programs can call.</descrip>
+          <termSec>
+            <term>library</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>kütüphane</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>kitaplık</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c061">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Permission to use software under stated conditions.</descrip>
+          <termSec>
+            <term>license</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">The license allows you to install the program on two computers.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>lisans</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Lisans, programı iki bilgisayara yüklemenize izin verir.</descrip>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c062">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A file in which a system records events as they happen.</descrip>
+          <termSec>
+            <term>log file</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>günlük dosyası</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c063">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Signing in to a system by giving credentials such as a user name and a password.</descrip>
+          <termSec>
+            <term>login</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>oturum açma</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c064">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Software that is designed to damage a system or to steal information.</descrip>
+          <termSec>
+            <term>malware</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>kötü amaçlı yazılım</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c065">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The component in which a computer keeps the data and instructions that are in use.</descrip>
+          <termSec>
+            <term>memory</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>bellek</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c066">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A set of selectable commands shown on screen, usually opened by clicking a label or an icon.</descrip>
+          <termSec>
+            <term>menu</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>menü</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c067">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Data that describes other data, such as its author, date, or format.</descrip>
+          <termSec>
+            <term>metadata</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>meta veri</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c068">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A handheld device that is used to move a pointer and to select items on the screen.</descrip>
+          <termSec>
+            <term>mouse</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>fare</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c069">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Computers and other devices linked together so that they can communicate and share resources.</descrip>
+          <termSec>
+            <term>network</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>ağ</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c070">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A message that informs a user about an event without asking for immediate action.</descrip>
+          <termSec>
+            <term>notification</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">You will get a notification when the file is ready.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>bildirim</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Dosya hazır olduğunda bir bildirim alacaksınız.</descrip>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c071">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Not connected to a network or to the internet.</descrip>
+          <termSec>
+            <term>offline</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>çevrimdışı</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c072">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Connected to a network or to the internet.</descrip>
+          <termSec>
+            <term>online</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>çevrimiçi</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c073">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Describes software whose source code anyone can inspect, use, and change.</descrip>
+          <termSec>
+            <term>open source</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>açık kaynak</term>
+            <termNote type="partOfSpeech">adjective</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c074">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The main software that manages a computer's hardware and runs other programs.</descrip>
+          <termSec>
+            <term>operating system</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>işletim sistemi</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c075">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Data or results that a computer or program produces.</descrip>
+          <termSec>
+            <term>output</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>çıktı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>çıkış</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c076">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A secret string of characters that is used to prove a user's identity.</descrip>
+          <termSec>
+            <term>password</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Choose a password that is hard to guess.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>parola</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Tahmin edilmesi zor bir parola seçin.</descrip>
+          </termSec>
+          <termSec>
+            <term>şifre</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c077">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A small update that fixes problems or security weaknesses in software.</descrip>
+          <termSec>
+            <term>patch</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>yama</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c078">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Approval that lets a user or program carry out an action or reach a resource.</descrip>
+          <termSec>
+            <term>permission</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>izin</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c079">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">One tiny dot of a digital picture; a screen shows an image as a grid of them.</descrip>
+          <termSec>
+            <term>pixel</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>piksel</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c080">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">An add-on module that gives a program extra abilities without changing the program itself.</descrip>
+          <termSec>
+            <term>plug-in</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>eklenti</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c081">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A small window that appears suddenly on top of the current screen.</descrip>
+          <termSec>
+            <term>pop-up window</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>açılır pencere</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c082">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A connection point on a device, or a numbered channel used for network traffic.</descrip>
+          <termSec>
+            <term>port</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>bağlantı noktası</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c083">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A machine that turns a digital document or picture into a physical copy, usually on paper.</descrip>
+          <termSec>
+            <term>printer</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>yazıcı</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c084">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The right and the ability to keep personal information under one's own control.</descrip>
+          <termSec>
+            <term>privacy</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>gizlilik</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c085">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The component that carries out the instructions of a computer program.</descrip>
+          <termSec>
+            <term>processor</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>işlemci</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c086">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A set of instructions that a computer can run.</descrip>
+          <termSec>
+            <term>program</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>program</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c087">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Agreed rules that decide the order and the format in which devices send and receive data.</descrip>
+          <termSec>
+            <term>protocol</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>protokol</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c088">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A server that passes requests between a user and another server.</descrip>
+          <termSec>
+            <term>proxy server</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>ara sunucu</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>proxy sunucu</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c089">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A request for information from a database.</descrip>
+          <termSec>
+            <term>query</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>sorgu</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c090">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A device that forwards data between networks.</descrip>
+          <termSec>
+            <term>router</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>yönlendirici</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c091">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A bar at the edge of a window that is used to move the visible content up, down, or sideways.</descrip>
+          <termSec>
+            <term>scroll bar</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>kaydırma çubuğu</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c092">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A program that finds web pages that match a search term.</descrip>
+          <termSec>
+            <term>search engine</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>arama motoru</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c093">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A machine or program whose job is to answer requests from other machines or programs, called clients.</descrip>
+          <termSec>
+            <term>server</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>sunucu</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c094">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A quick way to reach a file, program, or command.</descrip>
+          <termSec>
+            <term>shortcut</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Use the keyboard shortcut to copy the text.</descrip>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>kısayol</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+            <descrip type="context">Metni kopyalamak için klavye kısayolunu kullanın.</descrip>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c095">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Programs and related data that tell a computer what to do.</descrip>
+          <termSec>
+            <term>software</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>yazılım</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c096">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">The human-readable instructions of a program, written in a programming language.</descrip>
+          <termSec>
+            <term>source code</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>kaynak kod</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c097">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Unwanted messages, usually advertising, that are sent in large numbers.</descrip>
+          <termSec>
+            <term>spam</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>istenmeyen e-posta</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>spam</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c098">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A program or file that arranges data in rows and columns and can calculate with it.</descrip>
+          <termSec>
+            <term>spreadsheet</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>elektronik tablo</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c099">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">Space or devices that keep data for later use.</descrip>
+          <termSec>
+            <term>storage</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>depolama</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="c100">
+        <descrip type="subjectField">information technology</descrip>
+        <langSec xml:lang="en">
+          <descrip type="definition">A labeled control that switches between pages within the same window.</descrip>
+          <termSec>
+            <term>tab</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+        <langSec xml:lang="tr">
+          <termSec>
+            <term>sekme</term>
+            <termNote type="partOfSpeech">noun</termNote>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+    </body>
+  </text>
+</tbx>

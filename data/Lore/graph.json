@@ -1,0 +1,769 @@
+{
+  "nodes": [
+    {
+      "id": "Aldous Varn",
+      "type": "Person",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Ashgate",
+      "type": "Place",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Brandt Halloran",
+      "type": "Person",
+      "aliases": [
+        "Halloran"
+      ],
+      "edges": 10
+    },
+    {
+      "id": "Cassian Varn",
+      "type": "Person",
+      "aliases": [
+        "Cassian"
+      ],
+      "edges": 5
+    },
+    {
+      "id": "Charter of House Varn",
+      "type": "Item",
+      "aliases": [
+        "Charter"
+      ],
+      "edges": 10
+    },
+    {
+      "id": "Corsair League of the Ember Isles",
+      "type": "Group",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Council of Nine",
+      "type": "Group",
+      "aliases": [],
+      "edges": 3
+    },
+    {
+      "id": "Edmund Dusk",
+      "type": "Person",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Ember Crown",
+      "type": "Item",
+      "aliases": [
+        "crown"
+      ],
+      "edges": 2
+    },
+    {
+      "id": "Ember Isles",
+      "type": "Place",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Frost Treaty",
+      "type": "Event",
+      "aliases": [],
+      "edges": 2
+    },
+    {
+      "id": "Glass Library",
+      "type": "Item",
+      "aliases": [],
+      "edges": 4
+    },
+    {
+      "id": "Grey Warden",
+      "type": "Person",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "House Varn",
+      "type": "Group",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Iron Chancellor",
+      "type": "Person",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Isolde Varn",
+      "type": "Person",
+      "aliases": [
+        "Isolde"
+      ],
+      "edges": 13
+    },
+    {
+      "id": "Kharn Mountains",
+      "type": "Place",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Maelric Voss",
+      "type": "Person",
+      "aliases": [
+        "Voss"
+      ],
+      "edges": 15
+    },
+    {
+      "id": "Marrowfell",
+      "type": "Place",
+      "aliases": [],
+      "edges": 3
+    },
+    {
+      "id": "Order of the Lantern",
+      "type": "Group",
+      "aliases": [
+        "Order"
+      ],
+      "edges": 3
+    },
+    {
+      "id": "Orren",
+      "type": "Person",
+      "aliases": [],
+      "edges": 6
+    },
+    {
+      "id": "Orren Thale",
+      "type": "Person",
+      "aliases": [],
+      "edges": 3
+    },
+    {
+      "id": "Orren's place",
+      "type": "Person",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Pale Queen",
+      "type": "Person",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "Queen",
+      "type": "Event",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "River Sable",
+      "type": "Place",
+      "aliases": [],
+      "edges": 2
+    },
+    {
+      "id": "Seraphine Dusk",
+      "type": "Person",
+      "aliases": [],
+      "edges": 3
+    },
+    {
+      "id": "Sunless Key",
+      "type": "Item",
+      "aliases": [],
+      "edges": 2
+    },
+    {
+      "id": "Tamsin Reed",
+      "type": "Person",
+      "aliases": [
+        "Tamsin"
+      ],
+      "edges": 6
+    },
+    {
+      "id": "Warden of Kharn Hold",
+      "type": "Item",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "boat",
+      "type": "Item",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "chancellor",
+      "type": "Person",
+      "aliases": [],
+      "edges": 2
+    },
+    {
+      "id": "decrees",
+      "type": "Item",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "fleet",
+      "type": "Group",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "fortress",
+      "type": "Place",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "match",
+      "type": "Event",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "office",
+      "type": "Item",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "palace",
+      "type": "Place",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "queen",
+      "type": "Person",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "reading aloud",
+      "type": "Event",
+      "aliases": [],
+      "edges": 1
+    },
+    {
+      "id": "secret messages",
+      "type": "Item",
+      "aliases": [],
+      "edges": 3
+    },
+    {
+      "id": "vault",
+      "type": "Place",
+      "aliases": [],
+      "edges": 3
+    }
+  ],
+  "edges": [
+    {
+      "source": "Ashgate",
+      "relation": "built_around",
+      "target": "Glass Library",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Brandt Halloran",
+      "relation": "is_leader_of",
+      "target": "Corsair League of the Ember Isles",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Brandt Halloran",
+      "relation": "marries",
+      "target": "Isolde Varn",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Brandt Halloran",
+      "relation": "proposes",
+      "target": "Frost Treaty",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Brandt Halloran",
+      "relation": "read",
+      "target": "Charter of House Varn",
+      "chunks": [
+        4
+      ]
+    },
+    {
+      "source": "Brandt Halloran",
+      "relation": "sailed_with",
+      "target": "Charter of House Varn",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Brandt Halloran",
+      "relation": "sailed_with",
+      "target": "fleet",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Brandt Halloran",
+      "relation": "spouse_of",
+      "target": "Isolde Varn",
+      "chunks": [
+        4
+      ]
+    },
+    {
+      "source": "Cassian Varn",
+      "relation": "called",
+      "target": "Grey Warden",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Cassian Varn",
+      "relation": "named",
+      "target": "Warden of Kharn Hold",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Cassian Varn",
+      "relation": "surrendered",
+      "target": "fortress",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Cassian Varn",
+      "relation": "surrounded",
+      "target": "Glass Library",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Charter of House Varn",
+      "relation": "declares",
+      "target": "Ember Crown",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Charter of House Varn",
+      "relation": "prohibits",
+      "target": "chancellor",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Charter of House Varn",
+      "relation": "rests_in",
+      "target": "Glass Library",
+      "chunks": [
+        4
+      ]
+    },
+    {
+      "source": "Council of Nine",
+      "relation": "member_of",
+      "target": "Brandt Halloran",
+      "chunks": [
+        4
+      ]
+    },
+    {
+      "source": "Council of Nine",
+      "relation": "stripped",
+      "target": "Brandt Halloran",
+      "chunks": [
+        4
+      ]
+    },
+    {
+      "source": "Frost Treaty",
+      "relation": "sealed",
+      "target": "Isolde Varn",
+      "chunks": [
+        4
+      ]
+    },
+    {
+      "source": "House Varn",
+      "relation": "ruler_of",
+      "target": "Marrowfell",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Isolde Varn",
+      "relation": "agrees_to",
+      "target": "match",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Isolde Varn",
+      "relation": "became",
+      "target": "Queen",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Isolde Varn",
+      "relation": "confronted",
+      "target": "Maelric Voss",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Isolde Varn",
+      "relation": "exiled",
+      "target": "Maelric Voss",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Isolde Varn",
+      "relation": "hated",
+      "target": "Maelric Voss",
+      "chunks": [
+        1
+      ]
+    },
+    {
+      "source": "Isolde Varn",
+      "relation": "inherited",
+      "target": "Ember Crown",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Isolde Varn",
+      "relation": "learned_that",
+      "target": "Orren",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Isolde Varn",
+      "relation": "named",
+      "target": "Pale Queen",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Isolde Varn",
+      "relation": "trusted",
+      "target": "Orren Thale",
+      "chunks": [
+        1
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "destroyed",
+      "target": "Charter of House Varn",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "distrusted",
+      "target": "Isolde Varn",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "exiled_to",
+      "target": "Ember Isles",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "forged",
+      "target": "decrees",
+      "chunks": [
+        4
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "killed",
+      "target": "Edmund Dusk",
+      "chunks": [
+        1
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "known_as",
+      "target": "Iron Chancellor",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "leader_of",
+      "target": "Council of Nine",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "opposes",
+      "target": "reading aloud",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "ordered",
+      "target": "Glass Library",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "promised",
+      "target": "Cassian Varn",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "served",
+      "target": "Aldous Varn",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Maelric Voss",
+      "relation": "spouse_of",
+      "target": "queen",
+      "chunks": [
+        4
+      ]
+    },
+    {
+      "source": "Marrowfell",
+      "relation": "located_in",
+      "target": "Kharn Mountains",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Marrowfell",
+      "relation": "located_in",
+      "target": "River Sable",
+      "chunks": [
+        0
+      ]
+    },
+    {
+      "source": "Orren",
+      "relation": "gave",
+      "target": "Charter of House Varn",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Orren",
+      "relation": "holds",
+      "target": "Sunless Key",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Orren",
+      "relation": "opened",
+      "target": "vault",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Orren",
+      "relation": "opens",
+      "target": "vault",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Orren",
+      "relation": "used",
+      "target": "Sunless Key",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Orren Thale",
+      "relation": "mentor_of",
+      "target": "Seraphine Dusk",
+      "chunks": [
+        1
+      ]
+    },
+    {
+      "source": "Orren Thale",
+      "relation": "serves",
+      "target": "Order of the Lantern",
+      "chunks": [
+        1
+      ]
+    },
+    {
+      "source": "Seraphine Dusk",
+      "relation": "leader_of",
+      "target": "Order of the Lantern",
+      "chunks": [
+        1
+      ]
+    },
+    {
+      "source": "Seraphine Dusk",
+      "relation": "took",
+      "target": "Orren's place",
+      "chunks": [
+        4
+      ]
+    },
+    {
+      "source": "Tamsin Reed",
+      "relation": "carried",
+      "target": "Charter of House Varn",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Tamsin Reed",
+      "relation": "delivered_to",
+      "target": "Brandt Halloran",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Tamsin Reed",
+      "relation": "escaped_by",
+      "target": "boat",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Tamsin Reed",
+      "relation": "holds",
+      "target": "secret messages",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "Tamsin Reed",
+      "relation": "received",
+      "target": "Charter of House Varn",
+      "chunks": [
+        3
+      ]
+    },
+    {
+      "source": "Tamsin Reed",
+      "relation": "sails",
+      "target": "River Sable",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "chancellor",
+      "relation": "loses",
+      "target": "office",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "secret messages",
+      "relation": "between",
+      "target": "Order of the Lantern",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "secret messages",
+      "relation": "between",
+      "target": "palace",
+      "chunks": [
+        2
+      ]
+    },
+    {
+      "source": "vault",
+      "relation": "contains",
+      "target": "Charter of House Varn",
+      "chunks": [
+        2
+      ]
+    }
+  ],
+  "chunks": [
+    "The Winter of Lanterns\n\nThe kingdom of Marrowfell lies between the Kharn Mountains and the River Sable. Its capital, Ashgate, was built around the Glass Library, where the kingdom's charters are kept. For three hundred years Marrowfell was ruled by House Varn.\n\nKing Aldous Varn died in the autumn of the year 412 and left two children. His elder daughter Isolde inherited the Ember Crown and became queen; the people soon called her the Pale Queen. His younger son Cassian was named Warden of Kharn Hold, the fortress that guards the only road through the Kharn Mountains. Soldiers called him the Grey Warden.\n\nReal power, however, sat with Maelric Voss, head of the Council of Nine. Voss, known as the Iron Chancellor, had served King Aldous for thirty years. He distrusted Isolde and thought her too soft. He found an ally in Cassian, who resented that his sister had received the crown. Voss promised the Grey Warden that he would one day wear it himself.",
+    "Isolde trusted few people. Her closest adviser was Orren Thale, the court archivist, whom the courtiers called the Quiet Scribe. What she did not know was that Orren served the Order of the Lantern, a secret society sworn to protect the kingdom's charters from any ruler who would burn them. The Order was led by Seraphine Dusk, whom its members called Mother Lantern. Seraphine had taught Orren everything he knew about the old records. She hated Voss, because twenty years earlier the Chancellor had executed her husband, the scholar Edmund Dusk, for heresy.",
+    "Orren kept the Sunless Key, which opened a vault beneath the Glass Library. In that vault lay the Charter of House Varn. The Charter declared that the crown passes to the eldest child of a king, and that any chancellor who forged a royal decree must lose his office. If it were ever read aloud before the Council, it would end Voss's power. Orren's niece, Tamsin Reed, a smuggler who sailed the River Sable, carried secret messages between the Order and the palace.\n\nIn the winter of 413 the Corsair League of the Ember Isles offered Marrowfell peace. Its leader, Admiral Brandt Halloran, proposed the Frost Treaty, to be sealed by his marriage to Queen Isolde. Isolde agreed to the match. Voss opposed it, because the Council's gold came from war taxes, and he began to plan.",
+    "On the Night of Lanterns, Voss ordered the Glass Library burned so the Charter would be destroyed. Cassian's soldiers surrounded the building. Orren used the Sunless Key, opened the vault, and gave the Charter to Tamsin through a cellar door. Cassian's captain, Dorn Hask, found Orren inside the burning library and killed him. Tamsin escaped by boat down the River Sable with the Charter hidden in a barrel. She carried it to Admiral Halloran in the Ember Isles.\n\nHalloran sailed back up the river with the Charter and his fleet. When Isolde learned that her own brother had helped Voss, she rode to Kharn Hold and confronted him. Cassian, ashamed, surrendered the fortress. Isolde did not execute him; she exiled him to the Ember Isles.",
+    "Back in Ashgate, Halloran read the Charter aloud before the Council of Nine. Because Voss had forged decrees in the queen's name, the Council stripped the Iron Chancellor of his office. Seraphine Dusk, who had waited twenty years for this day, took Orren's place as archivist. Isolde and Halloran were married, and the Frost Treaty was sealed. The Charter now rests in the Glass Library, which was rebuilt, and Dorn Hask was never found."
+  ]
+}

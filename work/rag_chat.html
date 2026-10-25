@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local RAG Chat</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --ink: #1f2328; --muted: #656d76;
+    --line: #d8d6cf; --accent: #2f6f5e; --accent-ink: #ffffff;
+    --user: #e4efe9; --bot: #ffffff; --warn: #9a5b00; --graph: #6a4fb3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17181a; --panel: #212326; --ink: #e8e6e1; --muted: #9aa0a6;
+      --line: #34373b; --accent: #5fb89f; --accent-ink: #10201b;
+      --user: #1f3a31; --bot: #212326; --warn: #e0a95a; --graph: #a78bfa;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    height: 100vh; height: 100dvh; display: flex; flex-direction: column;
+  }
+  header {
+    padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center;
+  }
+  header h1 { font-size: 17px; margin: 0; font-weight: 650; }
+  .status { font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: #b3261e; display: inline-block; }
+  .dot.ok { background: #2e9e5b; }
+  .controls { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 14px; }
+  .controls label { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  .controls label.gctl { color: var(--graph); }
+  [hidden] { display: none !important; }
+  input[type=number], input[type=text] {
+    background: var(--bg); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 6px; padding: 4px 6px; font: inherit;
+  }
+  input[type=number] { width: 56px; }
+  select { background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; font: inherit; max-width: 220px; }
+  input[type=text] { width: 190px; }
+  button {
+    font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+    border-radius: 8px; padding: 6px 12px; cursor: pointer;
+  }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  main { flex: 1; overflow-y: auto; padding: 16px; }
+  .wrap { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .msg { padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .msg.user { background: var(--user); align-self: flex-end; max-width: 85%; }
+  .msg.bot { background: var(--bot); align-self: flex-start; max-width: 95%; }
+  .msg.note { background: transparent; border-style: dashed; color: var(--muted); font-size: 14px; }
+  .msg.err { color: var(--warn); border-color: var(--warn); }
+  details { margin-top: 8px; font-size: 13px; color: var(--muted); white-space: normal; }
+  details summary { cursor: pointer; }
+  .src { margin-top: 6px; padding: 8px; border-left: 3px solid var(--line); white-space: pre-wrap; }
+  .src.graph { border-left-color: var(--graph); }
+  .src b { color: var(--ink); }
+  footer { padding: 12px 16px; background: var(--panel); border-top: 1px solid var(--line); }
+  .row { max-width: 820px; margin: 0 auto; display: flex; gap: 8px; }
+  textarea {
+    flex: 1; resize: none; background: var(--bg); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 10px; padding: 8px 10px; font: inherit; height: 46px;
+  }
+  .hint { max-width: 820px; margin: 6px auto 0; font-size: 12px; color: var(--muted); }
+  input[type=file] { display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Local RAG Chat</h1>
+  <div class="status"><span class="dot" id="dot"></span><span id="status">checking server…</span></div>
+  <div class="controls">
+    <label>Server <input type="text" id="api" value="http://localhost:5001"></label>
+    <label>Top-k <input type="number" id="topk" value="4" min="1" max="12"></label>
+    <label class="gctl" title="How many steps to walk outward from the entities found in the question" hidden><span>Hops</span> <input type="number" id="hops" value="2" min="1" max="4"></label>
+    <label class="gctl" title="How many source passages to add to the graph facts (0 = facts only)" hidden><span>Passages</span> <input type="number" id="npass" value="2" min="0" max="6"></label>
+    <label class="gctl" title="Send every fact in the graph (good for counting questions, slow for big graphs)" hidden><input type="checkbox" id="wholeGraph"> Whole graph</label>
+    <label><input type="checkbox" id="useRag" checked> Use RAG</label>
+    <label><input type="checkbox" id="prevQ" checked> Search with previous question too</label>
+    <label>Database <select id="dbSel"><option value="">none loaded</option></select></label>
+    <button id="loadBtn">Load files</button>
+    <input type="file" id="file" accept=".json,.npy,application/json" multiple>
+    <button id="clearBtn">Clear chat</button>
+  </div>
+</header>
+
+<main id="chat"><div class="wrap" id="log"></div></main>
+
+<footer>
+  <div class="row">
+    <textarea id="input" placeholder="Ask something about your document…  (Enter to send, Shift+Enter for a new line)"></textarea>
+    <button class="primary" id="sendBtn">Send</button>
+  </div>
+  <div class="hint" id="hint">Nothing loaded yet. Click “Load files”. Vector database: pick vectors.npy and chunks.json together (Ctrl-click). Graph: pick graph.json (and aliases.json if you have it). Or turn off “Use RAG”.</div>
+</footer>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const log = $("log"), chat = $("chat");
+let dbs = [];              // vector databases: {name, chunks, vectors (flat Float32Array), d, n, norms}
+let graphs = [];           // knowledge graphs: {name, nodes, edges, chunks}
+let aliasMap = {};         // optional aliases.json: canonical name -> [other names]
+let pending = { vec: null, chunks: null };   // waits for the other half of a .npy + chunks pair
+let history = [];          // [{role, content}] of the plain conversation (no excerpts)
+let busy = false;
+
+const SYSTEM_RAG =
+  "You are a careful assistant. Answer the question using ONLY the facts and excerpts provided. " +
+  "If they do not contain the answer, say that you cannot tell from them. " +
+  "Do not guess and do not use outside knowledge. Answer in the language of the question.";
+const SYSTEM_PLAIN = "You are a helpful assistant. Answer in the language of the question.";
+const FACT_GUIDE =
+  'How to read the facts: each line is "subject | relation | object". ' +
+  'Example: "A | child_of | B" means A is the child of B. "A | killed | B" means A killed B. ' +
+  "Relations like sibling_of, spouse_of, ally_of and enemy_of work in both directions.";
+const MAX_WHOLE_GRAPH = 150;   // safety limit for "Whole graph"
+
+function api() { return $("api").value.replace(/\/+$/, ""); }
+
+function add(role, text, cls) {
+  const d = document.createElement("div");
+  d.className = "msg " + role + (cls ? " " + cls : "");
+  d.textContent = text;
+  log.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+  return d;
+}
+
+async function post(path, payload) {
+  const r = await fetch(api() + "/v1" + path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!r.ok) throw new Error("Server returned " + r.status);
+  return r.json();
+}
+
+async function checkServer() {
+  try {
+    const r = await fetch(api() + "/v1/models");
+    if (!r.ok) throw new Error();
+    $("dot").className = "dot ok";
+    $("status").textContent = "server connected";
+  } catch (e) {
+    $("dot").className = "dot";
+    $("status").textContent = "server not reachable";
+  }
+}
+
+/* ---------- reading files ---------- */
+function norm(v) { let s = 0; for (const x of v) s += x * x; return Math.sqrt(s); }
+
+function parseNpy(buf) {
+  const u8 = new Uint8Array(buf);
+  if (u8[0] !== 0x93 || String.fromCharCode(...u8.slice(1, 6)) !== "NUMPY") throw new Error("Not a .npy file.");
+  const dv = new DataView(buf);
+  const major = u8[6];
+  const hlen = major === 1 ? dv.getUint16(8, true) : dv.getUint32(8, true);
+  const off = major === 1 ? 10 : 12;
+  const header = new TextDecoder().decode(u8.slice(off, off + hlen));
+  const descr = /'descr':\s*'([^']+)'/.exec(header)?.[1];
+  const fortran = /'fortran_order':\s*True/.test(header);
+  const shape = /'shape':\s*\(([^)]*)\)/.exec(header)?.[1].split(",").map((x) => x.trim()).filter(Boolean).map(Number);
+  if (!descr || !shape || shape.length !== 2) throw new Error("Expected a 2D array of vectors.");
+  const start = off + hlen, n = shape[0], d = shape[1];
+  let data;
+  if (descr === "<f4" || descr === "|f4") data = new Float32Array(buf.slice(start, start + n * d * 4));
+  else if (descr === "<f8") data = Float32Array.from(new Float64Array(buf.slice(start, start + n * d * 8)));
+  else throw new Error("Unsupported dtype " + descr + " (use float32 or float64).");
+  if (fortran) {
+    const t = new Float32Array(n * d);
+    for (let i = 0; i < n; i++) for (let j = 0; j < d; j++) t[i * d + j] = data[j * n + i];
+    data = t;
+  }
+  return { n, d, data };
+}
+
+function pickText(item) {
+  if (typeof item === "string") return item;
+  if (item && typeof item === "object") {
+    for (const k of ["text", "chunk", "content", "record", "term", "source"]) if (typeof item[k] === "string") return item[k];
+    const first = Object.values(item).find((v) => typeof v === "string");
+    if (first) return first;
+  }
+  return String(item);
+}
+
+// What kind of JSON file is this?
+function classify(j) {
+  if (Array.isArray(j)) return "chunks";
+  if (!j || typeof j !== "object") return null;
+  if (Array.isArray(j.nodes) && Array.isArray(j.edges)) return "graph";
+  if (Array.isArray(j.vectors)) return "index";
+  if (Array.isArray(j.chunks)) return "chunks";
+  const vals = Object.values(j);
+  if (vals.length && vals.every((v) => Array.isArray(v) && v.every((x) => typeof x === "string"))) return "aliases";
+  return null;
+}
+
+function refreshSelect(keep) {
+  const sel = $("dbSel");
+  keep = keep || sel.value;
+  sel.innerHTML = "";
+  if (!dbs.length && !graphs.length) { sel.innerHTML = '<option value="">none loaded</option>'; }
+  dbs.forEach((d) => { const o = document.createElement("option"); o.value = "v:" + d.name; o.textContent = d.name + " (" + d.n + " chunks)"; sel.appendChild(o); });
+  graphs.forEach((g) => { const o = document.createElement("option"); o.value = "g:" + g.name; o.textContent = "Graph: " + g.name + " (" + g.edges.length + " facts)"; sel.appendChild(o); });
+  if (dbs.length + graphs.length > 1) { const o = document.createElement("option"); o.value = "__all__"; o.textContent = "All (vectors + graphs)"; sel.appendChild(o); }
+  const values = [...sel.options].map((o) => o.value);
+  sel.value = values.includes(keep) ? keep : values[values.length - 1 - (dbs.length + graphs.length > 1 ? 1 : 0)];
+  for (const el of document.querySelectorAll(".gctl")) el.hidden = !graphs.length;
+}
+
+
+function addDb(defaultName, chunks, flat, d) {
+  const n = chunks.length;
+  if (flat.length !== n * d) throw new Error("The chunks file has " + n + " entries but the vectors hold " + (flat.length / d) + " rows. They must come from the same run.");
+  const name = ((window.prompt("Name this database (shown in the list and under each source):", defaultName) || defaultName).trim()) || defaultName;
+  const norms = new Float32Array(n);
+  for (let i = 0; i < n; i++) { let s = 0; for (let j = 0; j < d; j++) { const v = flat[i * d + j]; s += v * v; } norms[i] = Math.sqrt(s) || 1; }
+  dbs = dbs.filter((x) => x.name !== name);
+  dbs.push({ name, chunks, vectors: flat, d, n, norms });
+  refreshSelect("v:" + name);
+  $("hint").textContent = "Loaded “" + name + "”: " + n + " chunks, " + d + " dimensions.";
+  add("note", "Loaded vector database “" + name + "” (" + n + " chunks).", "note");
+}
+
+function addGraph(defaultName, j) {
+  const edges = j.edges.filter((e) => e && e.source && e.target && e.relation);
+  if (!edges.length) throw new Error("The graph has no facts (edges with source, relation and target).");
+  const nodes = j.nodes.map((n) => (typeof n === "string" ? { id: n } : n)).filter((n) => n && n.id);
+  const chunks = (j.chunks || []).map(pickText);
+  graphs = graphs.filter((x) => x.name !== defaultName);
+  graphs.push({ name: defaultName, nodes, edges: edges.map((e) => ({ ...e, chunks: e.chunks || [] })), chunks });
+  refreshSelect("g:" + defaultName);
+  const hasText = chunks.length ? " Source passages: " + chunks.length + "." : " (no source passages in this file)";
+  $("hint").textContent = "Loaded graph “" + defaultName + "”: " + nodes.length + " entities, " + edges.length + " facts." + hasText;
+  add("note", "Loaded graph “" + defaultName + "” (" + nodes.length + " entities, " + edges.length + " facts)." + (Object.keys(aliasMap).length ? "" : " Tip: also load aliases.json so nicknames in questions are recognised."), "note");
+}
+
+$("loadBtn").onclick = () => $("file").click();
+$("file").onchange = async (e) => {
+  const files = [...e.target.files];
+  e.target.value = "";
+  try {
+    for (const f of files) {
+      const stem = f.name.replace(/\.[^.]+$/, "");
+      if (f.name.toLowerCase().endsWith(".npy")) {
+        pending.vec = parseNpy(await f.arrayBuffer());
+        continue;
+      }
+      const j = JSON.parse(await f.text());
+      const kind = classify(j);
+      if (kind === "graph") addGraph(stem, j);
+      else if (kind === "aliases") {
+        aliasMap = { ...aliasMap, ...j };
+        add("note", "Loaded aliases (" + Object.keys(j).length + " names). They help to find nicknames in your questions.", "note");
+      } else if (kind === "index") {
+        const n = j.vectors.length, d = j.vectors[0].length, flat = new Float32Array(n * d);
+        for (let i = 0; i < n; i++) flat.set(j.vectors[i], i * d);
+        addDb(stem, (j.chunks || []).map(pickText), flat, d);
+      } else if (kind === "chunks") {
+        pending.chunks = (Array.isArray(j) ? j : j.chunks).map(pickText);
+      } else {
+        add("note", "Skipped " + f.name + ": not a chunk list, graph, index or aliases file.", "note");
+      }
+    }
+    if (pending.vec && pending.chunks) {
+      const { vec, chunks } = pending;
+      pending = { vec: null, chunks: null };
+      addDb("Database " + (dbs.length + 1), chunks, vec.data, vec.d);
+    } else if (pending.vec) {
+      add("note", "Got the vectors (" + pending.vec.n + " × " + pending.vec.d + "). Now load the matching chunks .json file.", "note");
+    } else if (pending.chunks) {
+      add("note", "Got the chunks (" + pending.chunks.length + "). Now load the matching vectors .npy file.", "note");
+    }
+  } catch (err) {
+    pending = { vec: null, chunks: null };
+    add("note", "Could not read the file: " + err.message, "err");
+  }
+};
+
+$("clearBtn").onclick = () => { history = []; log.innerHTML = ""; };
+
+/* ---------- graph retrieval (same logic as test_lore.py) ---------- */
+const TITLES = new Set(["the", "king", "queen", "lord", "lady", "admiral", "chancellor", "captain", "sir", "dame", "prince", "princess"]);
+
+function nameKey(name) {
+  name = name.toLowerCase().replace(/['’]s\b/g, "");
+  const words = name.replace(/[^\p{L}\p{N}_\s-]/gu, " ").split(/\s+/).filter(Boolean);
+  while (words.length && TITLES.has(words[0])) words.shift();
+  return words.join(" ");
+}
+
+function findEntities(question, g) {
+  const q = " " + nameKey(question) + " ";
+  const names = new Map();
+  for (const n of g.nodes) names.set(n.id, new Set([n.id, ...(n.aliases || [])]));
+  for (const [canon, alts] of Object.entries(aliasMap)) if (names.has(canon)) alts.forEach((a) => names.get(canon).add(a));
+  const found = new Set(), owner = new Map();
+  for (const [nid, forms] of names) {
+    for (const form of forms) {
+      const k = nameKey(form);
+      if (k && q.includes(" " + k + " ")) found.add(nid);
+      for (const w of k.split(" ")) if (w.length > 2) { if (!owner.has(w)) owner.set(w, new Set()); owner.get(w).add(nid); }
+    }
+  }
+  for (const w of new Set(q.trim().split(" "))) {
+    const o = owner.get(w);
+    if (o && o.size === 1) found.add([...o][0]);
+  }
+  return found;
+}
+
+function neighborhood(edges, start, hops, maxFacts) {
+  const seen = new Set(start), picked = new Map();
+  let frontier = new Set(start);
+  for (let h = 1; h <= hops; h++) {
+    const nxt = new Set();
+    edges.forEach((e, i) => {
+      if ((frontier.has(e.source) || frontier.has(e.target)) && !picked.has(i)) { picked.set(i, h); nxt.add(e.source); nxt.add(e.target); }
+    });
+    frontier = new Set([...nxt].filter((x) => !seen.has(x)));
+    nxt.forEach((x) => seen.add(x));
+  }
+  const order = [...picked.keys()].sort((a, b) =>
+    picked.get(a) - picked.get(b) || edges[a].source.localeCompare(edges[b].source) || edges[a].relation.localeCompare(edges[b].relation));
+  return order.slice(0, maxFacts).map((i) => edges[i]);
+}
+
+function graphRetrieve(g, question) {
+  const whole = $("wholeGraph").checked;
+  const hops = Math.max(1, Math.min(4, parseInt($("hops").value) || 2));
+  const found = findEntities(question, g);
+  let picked, why;
+  if (whole || !found.size) {
+    picked = g.edges.slice(0, MAX_WHOLE_GRAPH);
+    why = (whole ? "“Whole graph” is ticked" : "no entity from the question was recognised") + ", so " + picked.length + " facts were sent" + (g.edges.length > picked.length ? " (limit " + MAX_WHOLE_GRAPH + ")" : "") + ".";
+  } else {
+    picked = neighborhood(g.edges, found, hops, 40);
+    why = "entities found: " + [...found].sort().join(", ") + " · " + hops + " hop(s) · " + picked.length + " facts.";
+  }
+  const npass = Math.max(0, Math.min(6, parseInt($("npass").value) || 0));
+  let passages = [];
+  if (npass && g.chunks.length) {
+    const votes = new Map();
+    for (const e of picked) for (const c of e.chunks) if (c < g.chunks.length) votes.set(c, (votes.get(c) || 0) + 1);
+    passages = [...votes.keys()].sort((a, b) => votes.get(b) - votes.get(a) || a - b).slice(0, npass).sort((a, b) => a - b);
+  }
+  return { g, picked, passages, why };
+}
+
+/* ---------- vector retrieval ---------- */
+async function vectorRetrieve(question, targets) {
+  const emb = await post("/embeddings", { input: question });
+  const qv = emb.data[0].embedding, qn = norm(qv) || 1;
+  const k = Math.max(1, Math.min(12, parseInt($("topk").value) || 4));
+  const all = [];
+  for (const db of targets) {
+    if (db.d !== qv.length)
+      throw new Error("Database “" + db.name + "” has " + db.d + " dimensions but the server's embedding model gives " + qv.length + ". Use the same embedding model that built the database (start the server with the same --embeddingsmodel).");
+    for (let i = 0; i < db.n; i++) {
+      let dot = 0; const off = i * db.d;
+      for (let j = 0; j < db.d; j++) dot += qv[j] * db.vectors[off + j];
+      all.push({ db, i, score: dot / (qn * db.norms[i]) });
+    }
+  }
+  return all.sort((a, b) => b.score - a.score).slice(0, k);
+}
+
+async function retrieve(question) {
+  let q = question;
+  if ($("prevQ").checked) {
+    const prev = [...history].reverse().find((m) => m.role === "user");
+    if (prev) q = prev.content + "\n" + question;
+  }
+  const sel = $("dbSel").value;
+  const vTargets = sel === "__all__" ? dbs : dbs.filter((d) => "v:" + d.name === sel);
+  const gTargets = sel === "__all__" ? graphs : graphs.filter((g) => "g:" + g.name === sel);
+  const hits = vTargets.length ? await vectorRetrieve(q, vTargets) : [];
+  const gres = gTargets.map((g) => graphRetrieve(g, q));
+  return { hits, gres };
+}
+
+/* ---------- building the prompt and the source panel ---------- */
+function buildContext(r, question) {
+  const parts = [];
+  const lines = r.gres.flatMap((x) => x.picked.map((e) => e.source + " | " + e.relation + " | " + e.target));
+  if (lines.length) parts.push(FACT_GUIDE + "\n\nFACTS:\n" + lines.join("\n"));
+  const excerpts = [];
+  r.hits.forEach((h) => excerpts.push(h.db.chunks[h.i]));
+  r.gres.forEach((x) => x.passages.forEach((c) => excerpts.push(x.g.chunks[c])));
+  if (excerpts.length) parts.push("EXCERPTS:\n" + excerpts.map((t, n) => "[" + (n + 1) + "] " + t).join("\n\n---\n\n"));
+  return parts.join("\n\n") + "\n\nQUESTION: " + question;
+}
+
+function sourcePanel(r) {
+  const count = r.hits.length + r.gres.reduce((a, x) => a + x.picked.length + x.passages.length, 0);
+  const det = document.createElement("details");
+  const sum = document.createElement("summary");
+  sum.textContent = "Sources used (" + count + ")";
+  det.appendChild(sum);
+  const box = (cls, head, body) => {
+    const s = document.createElement("div");
+    s.className = "src " + cls;
+    const b = document.createElement("b");
+    b.textContent = head;
+    s.appendChild(b);
+    if (body) s.appendChild(document.createTextNode("\n" + body));
+    det.appendChild(s);
+  };
+  let n = 0;
+  r.hits.forEach((h) => { n++; box("", "[" + n + "] " + h.db.name + " · chunk #" + h.i + " · similarity " + h.score.toFixed(3), h.db.chunks[h.i]); });
+  r.gres.forEach((x) => {
+    box("graph", "Graph “" + x.g.name + "”: " + x.picked.length + " facts", x.why + "\n" +
+      x.picked.map((e) => "• " + e.source + " —" + e.relation + "→ " + e.target + (e.chunks.length ? "   [passage " + e.chunks.map((c) => c + 1).join(",") + "]" : "")).join("\n"));
+    x.passages.forEach((c) => { n++; box("graph", "[" + n + "] graph “" + x.g.name + "” · passage " + (c + 1), x.g.chunks[c]); });
+  });
+  return det;
+}
+
+function cleanReply(t) {
+  return t.replace(/<think>[\s\S]*?<\/think>/g, "").replace(/^[\s\S]*<\/think>/, "").trim();
+}
+
+async function send() {
+  if (busy) return;
+  const question = $("input").value.trim();
+  if (!question) return;
+  const useRag = $("useRag").checked;
+  if (useRag && !dbs.length && !graphs.length) { add("note", "Load a database or a graph first, or turn off “Use RAG”.", "err"); return; }
+
+  busy = true; $("sendBtn").disabled = true; $("input").value = "";
+  add("user", question);
+  const wait = add("bot", "Thinking… (local models can take a while)");
+
+  try {
+    let userContent = question, found = null;
+    if (useRag) {
+      found = await retrieve(question);
+      userContent = buildContext(found, question);
+    }
+    const messages = [{ role: "system", content: useRag ? SYSTEM_RAG : SYSTEM_PLAIN }]
+      .concat(history.slice(-6))
+      .concat([{ role: "user", content: userContent }]);
+
+    const res = await post("/chat/completions", { messages, max_tokens: 500, temperature: 0.2 });
+    const reply = cleanReply(res.choices[0].message.content || "") || "(empty answer)";
+    wait.textContent = reply;
+    if (found && (found.hits.length || found.gres.length)) wait.appendChild(sourcePanel(found));
+    // Keep the history clean: plain question and plain answer, no excerpts.
+    history.push({ role: "user", content: question }, { role: "assistant", content: reply });
+  } catch (err) {
+    wait.textContent = "Error: " + err.message + ". Is the server running at " + api() + "?";
+    wait.classList.add("err");
+  } finally {
+    busy = false; $("sendBtn").disabled = false; $("input").focus();
+    chat.scrollTop = chat.scrollHeight;
+    checkServer();
+  }
+}
+
+$("sendBtn").onclick = send;
+$("input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
+});
+$("api").addEventListener("change", checkServer);
+add("note", "Start your KoboldCPP script, then click “Load files”: vectors.npy + chunks.json for a vector database, or graph.json (+ aliases.json) for a knowledge graph. " +
+  "Load both and choose “All” to combine them. " +
+  "Open “Sources used” under an answer to see which text and which facts the model was given. " +
+  "Untick “Use RAG” to compare with the model's own memory.", "note");
+checkServer();
+</script>
+</body>
+</html>

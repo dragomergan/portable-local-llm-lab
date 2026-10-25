@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vector and Graph Map</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --ink: #1f2328; --muted: #656d76;
+    --line: #d8d6cf; --accent: #2f6f5e; --accent-ink: #ffffff; --star: #c4372c; --warn: #9a5b00;
+    --edge: #8a8f96;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17181a; --panel: #212326; --ink: #e8e6e1; --muted: #9aa0a6;
+      --line: #34373b; --accent: #5fb89f; --accent-ink: #10201b; --star: #ff7b6e; --warn: #e0a95a;
+      --edge: #7d838b;
+    }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+    height: 100vh; height: 100dvh; display: flex; flex-direction: column;
+  }
+  header { padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+  h1 { font-size: 17px; margin: 0 8px 0 0; font-weight: 650; }
+  button { font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 8px; padding: 5px 11px; cursor: pointer; }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  button.tab.on { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  input[type=text], input[type=number], select { font: inherit; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+  input[type=number] { width: 56px; }
+  input[type=file] { display: none; }
+  label { color: var(--muted); font-size: 14px; display: flex; gap: 6px; align-items: center; }
+  #q { flex: 1; min-width: 220px; }
+  .info { font-size: 13px; color: var(--muted); }
+  .err { color: var(--warn); }
+  .body { flex: 1; display: flex; min-height: 0; }
+  #stage { flex: 1; position: relative; min-width: 0; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+  canvas.drag { cursor: grabbing; }
+  canvas.node { cursor: pointer; }
+  aside { width: 360px; border-left: 1px solid var(--line); background: var(--panel); overflow-y: auto; padding: 12px 14px; font-size: 14px; }
+  aside h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 14px 0 6px; font-weight: 600; }
+  aside h2:first-child { margin-top: 0; }
+  .txt { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .nb { padding: 6px 8px; border-left: 3px solid var(--star); margin-bottom: 6px; background: var(--bg); border-radius: 0 6px 6px 0; }
+  .nb b { color: var(--muted); font-weight: 600; font-size: 12px; display: block; }
+  .fact { padding: 2px 0; }
+  .fact i { color: var(--muted); font-style: normal; }
+  .legend { position: absolute; left: 12px; bottom: 12px; font-size: 12px; color: var(--muted); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; max-width: 70%; }
+  .grad { width: 90px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, hsl(260 65% 50%), hsl(160 65% 50%), hsl(40 65% 50%)); }
+  .sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: -1px; }
+  .empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--muted); padding: 24px; pointer-events: none; }
+  @media (max-width: 760px) { .body { flex-direction: column; } aside { width: auto; height: 38%; border-left: 0; border-top: 1px solid var(--line); } }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>Vector and Graph Map</h1>
+    <button id="loadBtn" class="primary">Load files</button>
+    <input type="file" id="file" accept=".npy,.json,application/json" multiple>
+    <button class="tab" id="tabV" disabled>Vectors</button>
+    <button class="tab" id="tabG" disabled>Graph</button>
+    <label id="orderLbl"><input type="checkbox" id="byOrder" checked> Color by position in the text</label>
+    <label id="relLbl" hidden><input type="checkbox" id="relLabels" checked> Show relation names</label>
+    <span class="info" id="info">Nothing loaded.</span>
+  </div>
+  <div class="bar">
+    <input type="text" id="q" placeholder="Type a question or a phrase">
+    <label id="apiLbl">Server <input type="text" id="api" value="http://localhost:5001" style="width:180px"></label>
+    <label id="kLbl">Top-k <input type="number" id="k" value="5" min="1" max="20"></label>
+    <label id="hopLbl" hidden>Hops <input type="number" id="hops" value="2" min="1" max="4"></label>
+    <button class="primary" id="askBtn" disabled>Place on map</button>
+  </div>
+</header>
+
+<div class="body">
+  <div id="stage">
+    <canvas id="cv"></canvas>
+    <div class="empty" id="empty">Click “Load files”.<br><br>Vectors: pick vectors.npy and chunks.json together (Ctrl-click), or an index.json.<br>Graph: pick graph.json (and aliases.json if you have it).<br>You can load both and switch with the tabs.</div>
+    <div class="legend" id="legend" hidden></div>
+  </div>
+  <aside>
+    <h2>Hovered / selected</h2>
+    <div class="txt" id="detail">Hover over a point or node. Click to keep it selected. Scroll to zoom, drag the background to move, double-click to reset.</div>
+    <h2 id="nbTitle" hidden></h2>
+    <div id="nbs"></div>
+    <h2>How to read this map</h2>
+    <div class="info" id="howto"></div>
+  </aside>
+</div>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const cv = $("cv"), ctx = cv.getContext("2d");
+
+/* ---------- state ---------- */
+let mode = null;                       // "vec" or "graph"
+let N = 0, D = 0, X = null, texts = null, mean = null, pc1 = null, pc2 = null, px = null, py = null;
+let aliasMap = {};
+let G = null;                          // graph: {nodes, edges, chunks, byId, adj, types}
+let pendingChunks = null;
+let view = { s: 1, ox: 0, oy: 0 };
+let hover = -1, pinned = -1;
+let star = null;                       // vector mode: {x, y, hits}
+let focusNodes = null, focusEdges = null, focusStart = null;   // graph mode: result of a question
+let dpr = 1, W = 0, H = 0;
+
+const HOWTO_VEC = "The vectors have many dimensions (for example 768). This map squeezes them into 2 using PCA, so it is a rough picture: points that look close usually are, but not always. The ranking used for retrieval is computed on all dimensions, not on this picture.";
+const HOWTO_GRAPH = "Each circle is an entity, each arrow is a fact (subject → object, with the relation written on it). Big circles have many facts. Drag a circle to pull the graph apart. Type a question: the entities it mentions, and the facts around them, light up. Those facts are what the graph RAG would send to the model.";
+
+/* ---------- reading files ---------- */
+function parseNpy(buf) {
+  const u8 = new Uint8Array(buf);
+  if (u8[0] !== 0x93 || String.fromCharCode(...u8.slice(1, 6)) !== "NUMPY") throw new Error("Not a .npy file.");
+  const major = u8[6], dv = new DataView(buf);
+  const hlen = major === 1 ? dv.getUint16(8, true) : dv.getUint32(8, true);
+  const off = major === 1 ? 10 : 12;
+  const header = new TextDecoder().decode(u8.slice(off, off + hlen));
+  const descr = /'descr':\s*'([^']+)'/.exec(header)?.[1];
+  const fortran = /'fortran_order':\s*True/.test(header);
+  const shape = /'shape':\s*\(([^)]*)\)/.exec(header)?.[1].split(",").map((s) => s.trim()).filter(Boolean).map(Number);
+  if (!descr || !shape || shape.length !== 2) throw new Error("Expected a 2D array of vectors.");
+  const start = off + hlen, n = shape[0], d = shape[1];
+  let data;
+  if (descr === "<f4" || descr === "|f4") data = new Float32Array(buf.slice(start, start + n * d * 4));
+  else if (descr === "<f8") data = Float32Array.from(new Float64Array(buf.slice(start, start + n * d * 8)));
+  else throw new Error("Unsupported dtype " + descr + " (use float32 or float64).");
+  if (fortran) {
+    const t = new Float32Array(n * d);
+    for (let i = 0; i < n; i++) for (let j = 0; j < d; j++) t[i * d + j] = data[j * n + i];
+    data = t;
+  }
+  return { n, d, data };
+}
+
+function pickText(item) {
+  if (typeof item === "string") return item;
+  if (item && typeof item === "object") {
+    for (const k of ["text", "chunk", "content", "record", "term", "source"]) if (typeof item[k] === "string") return item[k];
+    const first = Object.values(item).find((v) => typeof v === "string");
+    if (first) return first;
+  }
+  return String(item);
+}
+
+function classify(j) {
+  if (Array.isArray(j)) return "chunks";
+  if (!j || typeof j !== "object") return null;
+  if (Array.isArray(j.nodes) && Array.isArray(j.edges)) return "graph";
+  if (Array.isArray(j.vectors)) return "index";
+  if (Array.isArray(j.chunks)) return "chunks";
+  const vals = Object.values(j);
+  if (vals.length && vals.every((v) => Array.isArray(v) && v.every((x) => typeof x === "string"))) return "aliases";
+  return null;
+}
+
+function setChunks(arr) {
+  texts = arr.map(pickText);
+  if (N) updateInfo(texts.length !== N ? "WARNING: " + texts.length + " chunks but " + N + " vectors (they must come from the same run)" : "");
+}
+
+$("loadBtn").onclick = () => $("file").click();
+$("file").onchange = async (e) => {
+  // chunk lists are processed last, so they attach to the vectors loaded in the same selection
+  const files = [...e.target.files].sort((a, b) => (a.name.toLowerCase().includes("chunk") ? 1 : 0) - (b.name.toLowerCase().includes("chunk") ? 1 : 0));
+  e.target.value = "";
+  const notes = [];
+  try {
+    for (const f of files) {
+      $("info").textContent = "Reading " + f.name + "…";
+      await new Promise((r) => setTimeout(r, 0));          // let the page repaint
+      const stem = f.name.replace(/\.[^.]+$/, "");
+      if (f.name.toLowerCase().endsWith(".npy")) {
+        const r = parseNpy(await f.arrayBuffer());
+        setVectors(r.n, r.d, r.data);
+        continue;
+      }
+      const j = JSON.parse(await f.text());
+      const kind = classify(j);
+      if (kind === "graph") setGraph(stem, j);
+      else if (kind === "aliases") { aliasMap = { ...aliasMap, ...j }; notes.push("aliases loaded"); }
+      else if (kind === "index") {
+        const vecs = j.vectors, n = vecs.length, d = vecs[0].length, flat = new Float32Array(n * d);
+        for (let i = 0; i < n; i++) flat.set(vecs[i], i * d);
+        setVectors(n, d, flat);
+        if (j.chunks && j.chunks.length) setChunks(j.chunks);
+      } else if (kind === "chunks") {
+        const arr = Array.isArray(j) ? j : j.chunks;
+        if (N) setChunks(arr); else pendingChunks = arr;
+      } else notes.push("skipped " + f.name);
+    }
+    if (pendingChunks && N) { setChunks(pendingChunks); pendingChunks = null; }
+    if (!mode) { $("info").textContent = "Nothing usable loaded."; return; }
+    updateTabs(); updateInfo(notes.join(", "));
+  } catch (err) {
+    $("info").innerHTML = '<span class="err"></span>';
+    $("info").firstChild.textContent = err.message;
+  }
+};
+
+function updateInfo(extra) {
+  const parts = [];
+  if (N) parts.push(N + " vectors × " + D + " dimensions" + (texts ? " · " + texts.length + " chunk texts" : " · no chunk texts (points show numbers only)"));
+  if (G) parts.push("graph: " + G.nodes.length + " entities, " + G.edges.length + " facts");
+  const el = $("info");
+  el.textContent = parts.join("  |  ") + (extra ? "  ·  " + extra : "");
+  if (extra && extra.startsWith("WARNING")) el.classList.add("err"); else el.classList.remove("err");
+}
+
+/* ---------- mode handling ---------- */
+function updateTabs() {
+  $("tabV").disabled = !N; $("tabG").disabled = !G;
+  $("tabV").classList.toggle("on", mode === "vec"); $("tabG").classList.toggle("on", mode === "graph");
+  $("empty").hidden = true;
+  $("orderLbl").hidden = mode !== "vec";
+  $("relLbl").hidden = mode !== "graph";
+  $("kLbl").hidden = $("apiLbl").hidden = mode !== "vec";
+  $("hopLbl").hidden = mode !== "graph";
+  $("askBtn").disabled = false;
+  $("askBtn").textContent = mode === "vec" ? "Place on map" : "Highlight in graph";
+  $("q").placeholder = mode === "vec"
+    ? "Type a question or a phrase: it appears as a star on the map (needs the KoboldCPP server)"
+    : "Type a question: the entities and facts the graph would use light up (works without a server)";
+  $("howto").textContent = mode === "vec" ? HOWTO_VEC : HOWTO_GRAPH;
+  $("nbs").innerHTML = ""; $("nbTitle").hidden = true;
+  hover = pinned = -1;
+  renderLegend();
+}
+function setMode(m) {
+  mode = m; updateTabs(); fit(); draw();
+  if (m === "graph") kick(0.3);
+}
+$("tabV").onclick = () => N && setMode("vec");
+$("tabG").onclick = () => G && setMode("graph");
+
+function renderLegend() {
+  const lg = $("legend");
+  lg.innerHTML = "";
+  if (mode === "vec") {
+    if (!$("byOrder").checked) { lg.hidden = true; return; }
+    lg.innerHTML = '<span>start</span><span class="grad"></span><span>end of text</span>';
+  } else if (mode === "graph") {
+    G.types.forEach((t, i) => {
+      const s = document.createElement("span"), dot = document.createElement("span");
+      dot.className = "sw"; dot.style.background = typeColor(i);
+      s.append(dot, t); lg.appendChild(s);
+    });
+  }
+  lg.hidden = !mode;
+}
+
+/* ---------- vectors: loading and PCA ---------- */
+function setVectors(n, d, flat) {
+  N = n; D = d; X = new Float32Array(flat.length);
+  for (let i = 0; i < n; i++) {
+    let s = 0;
+    for (let j = 0; j < d; j++) { const v = flat[i * d + j]; s += v * v; }
+    s = Math.sqrt(s) || 1;
+    for (let j = 0; j < d; j++) X[i * d + j] = flat[i * d + j] / s;
+  }
+  texts = null; star = null; hover = pinned = -1;
+  computePCA();
+  if (!mode || mode === "vec") { mode = "vec"; fit(); draw(); }
+}
+
+// PCA by power iteration. For large files the two main directions are found on a sample
+// of at most SAMPLE rows; every point is then projected with them.
+const SAMPLE = 4000;
+function computePCA() {
+  mean = new Float32Array(D);
+  for (let i = 0; i < N; i++) for (let j = 0; j < D; j++) mean[j] += X[i * D + j];
+  for (let j = 0; j < D; j++) mean[j] /= N;
+  const S = Math.min(N, SAMPLE), step = N / S;
+  const C = new Float32Array(S * D);
+  for (let r = 0; r < S; r++) { const i = Math.floor(r * step); for (let j = 0; j < D; j++) C[r * D + j] = X[i * D + j] - mean[j]; }
+
+  function top(avoid) {
+    let v = new Float32Array(D);
+    for (let j = 0; j < D; j++) v[j] = Math.sin(j * 12.9898 + (avoid ? 3 : 1));
+    const t = new Float32Array(S);
+    for (let it = 0; it < 50; it++) {
+      for (let r = 0; r < S; r++) { let s = 0; for (let j = 0; j < D; j++) s += C[r * D + j] * v[j]; t[r] = s; }
+      const nv = new Float32Array(D);
+      for (let r = 0; r < S; r++) { const tr = t[r]; for (let j = 0; j < D; j++) nv[j] += C[r * D + j] * tr; }
+      if (avoid) { let d = 0; for (let j = 0; j < D; j++) d += nv[j] * avoid[j]; for (let j = 0; j < D; j++) nv[j] -= d * avoid[j]; }
+      let nrm = 0; for (let j = 0; j < D; j++) nrm += nv[j] * nv[j];
+      nrm = Math.sqrt(nrm) || 1;
+      for (let j = 0; j < D; j++) nv[j] /= nrm;
+      v = nv;
+    }
+    return v;
+  }
+  pc1 = top(null); pc2 = top(pc1);
+  px = new Float32Array(N); py = new Float32Array(N);
+  for (let i = 0; i < N; i++) {
+    let a = 0, b = 0;
+    for (let j = 0; j < D; j++) { const c = X[i * D + j] - mean[j]; a += c * pc1[j]; b += c * pc2[j]; }
+    px[i] = a; py[i] = b;
+  }
+}
+function project(v) {
+  let a = 0, b = 0;
+  for (let j = 0; j < D; j++) { const c = v[j] - mean[j]; a += c * pc1[j]; b += c * pc2[j]; }
+  return [a, b];
+}
+
+/* ---------- graph: loading and layout ---------- */
+const TITLES = new Set(["the", "king", "queen", "lord", "lady", "admiral", "chancellor", "captain", "sir", "dame", "prince", "princess"]);
+function nameKey(name) {
+  name = name.toLowerCase().replace(/['’]s\b/g, "");
+  const words = name.replace(/[^\p{L}\p{N}_\s-]/gu, " ").split(/\s+/).filter(Boolean);
+  while (words.length && TITLES.has(words[0])) words.shift();
+  return words.join(" ");
+}
+
+let gx = null, gy = null, gvx = null, gvy = null, gfix = null, alpha = 0, raf = 0;
+
+function setGraph(name, j) {
+  const known = new Map();
+  (j.nodes || []).forEach((n) => { n = typeof n === "string" ? { id: n } : n; if (n && n.id) known.set(n.id, { type: "?", aliases: [], ...n }); });
+  const edges = [];
+  for (const e of j.edges) {
+    if (!e || !e.source || !e.target) continue;
+    for (const id of [e.source, e.target]) if (!known.has(id)) known.set(id, { id, type: "?", aliases: [] });
+    edges.push({ source: e.source, target: e.target, relation: e.relation || "", chunks: e.chunks || [] });
+  }
+  if (!edges.length) throw new Error("The graph has no facts (edges with source and target).");
+  const nodes = [...known.values()];
+  const idx = new Map(nodes.map((n, i) => [n.id, i]));
+  edges.forEach((e) => { e.s = idx.get(e.source); e.t = idx.get(e.target); });
+  nodes.forEach((n) => (n.deg = 0));
+  edges.forEach((e) => { nodes[e.s].deg++; nodes[e.t].deg++; });
+  // several edges between the same two entities are drawn as separate curves
+  const groups = new Map();
+  edges.forEach((e) => { const k = Math.min(e.s, e.t) + "|" + Math.max(e.s, e.t); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(e); });
+  groups.forEach((list) => list.forEach((e, i) => { e.bend = (i - (list.length - 1) / 2) * 0.35 * (e.s < e.t ? 1 : -1); }));
+  const types = [...new Set(nodes.map((n) => n.type))].sort();
+  G = { name, nodes, edges, chunks: (j.chunks || []).map(pickText), idx, types };
+  gx = new Float32Array(nodes.length); gy = new Float32Array(nodes.length);
+  gvx = new Float32Array(nodes.length); gvy = new Float32Array(nodes.length); gfix = new Uint8Array(nodes.length);
+  nodes.forEach((n, i) => { const a = (i / nodes.length) * 6.2832, r = 60 + 14 * Math.sqrt(nodes.length); gx[i] = r * Math.cos(a); gy[i] = r * Math.sin(a); });
+  focusNodes = focusEdges = focusStart = null;
+  mode = mode || "graph";
+  if (mode === "graph") { updateTabs(); fit(); }
+  kick(1);
+}
+function typeColor(i) {
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return "hsl(" + ((i * 67 + 200) % 360) + " 60% " + (dark ? 64 : 44) + "%)";
+}
+function nodeRadius(i) { return 6 + 2.2 * Math.sqrt(G.nodes[i].deg); }
+
+// A small force simulation: nodes push each other away, facts pull their two ends together.
+function simStep() {
+  const n = G.nodes.length, rest = 120, heat = Math.min(1, alpha * 3);
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      let dx = gx[i] - gx[j], dy = gy[i] - gy[j], d2 = dx * dx + dy * dy;
+      if (d2 < 0.01) { dx = Math.random() - 0.5; dy = Math.random() - 0.5; d2 = dx * dx + dy * dy + 0.01; }
+      const f = 9000 / d2, d = Math.sqrt(d2), fx = (dx / d) * f, fy = (dy / d) * f;
+      gvx[i] += fx; gvy[i] += fy; gvx[j] -= fx; gvy[j] -= fy;
+    }
+  }
+  for (const e of G.edges) {
+    if (e.s === e.t) continue;
+    const dx = gx[e.t] - gx[e.s], dy = gy[e.t] - gy[e.s], d = Math.sqrt(dx * dx + dy * dy) || 1;
+    const f = (d - rest) * 0.03, fx = (dx / d) * f, fy = (dy / d) * f;
+    gvx[e.s] += fx; gvy[e.s] += fy; gvx[e.t] -= fx; gvy[e.t] -= fy;
+  }
+  for (let i = 0; i < n; i++) {
+    gvx[i] -= gx[i] * 0.02; gvy[i] -= gy[i] * 0.02;             // gentle pull to the centre
+    if (gfix[i]) { gvx[i] = gvy[i] = 0; continue; }
+    gvx[i] *= 0.6; gvy[i] *= 0.6;
+    gx[i] += Math.max(-25, Math.min(25, gvx[i])) * heat; gy[i] += Math.max(-25, Math.min(25, gvy[i])) * heat;
+  }
+  alpha *= 0.985;
+}
+function kick(a) {
+  if (!G) return;
+  alpha = Math.max(alpha, a);
+  if (!raf) raf = requestAnimationFrame(loop);
+}
+function loop() {
+  raf = 0;
+  if (!G || alpha < 0.02) { if (mode === "graph") { fit(); draw(); } return; }
+  const n = G.nodes.length, steps = n > 400 ? 1 : n > 150 ? 2 : 3;
+  for (let s = 0; s < steps; s++) simStep();
+  if (mode === "graph") { if (dragNode < 0 && alpha > 0.5) fit(); draw(); }
+  raf = requestAnimationFrame(loop);
+}
+
+/* ---------- viewport ---------- */
+function resize() {
+  dpr = window.devicePixelRatio || 1;
+  const r = cv.getBoundingClientRect();
+  W = r.width; H = r.height;
+  cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+  draw();
+}
+window.addEventListener("resize", resize);
+
+function fit() {
+  let xs, ys, n;
+  if (mode === "vec" && N) { xs = px; ys = py; n = N; }
+  else if (mode === "graph" && G) { xs = gx; ys = gy; n = G.nodes.length; }
+  else return;
+  let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+  for (let i = 0; i < n; i++) { x0 = Math.min(x0, xs[i]); x1 = Math.max(x1, xs[i]); y0 = Math.min(y0, ys[i]); y1 = Math.max(y1, ys[i]); }
+  if (mode === "vec" && star) { x0 = Math.min(x0, star.x); x1 = Math.max(x1, star.x); y0 = Math.min(y0, star.y); y1 = Math.max(y1, star.y); }
+  const pad = mode === "graph" ? 70 : 40, w = Math.max(x1 - x0, 1e-6), h = Math.max(y1 - y0, 1e-6);
+  let s = Math.min((W - 2 * pad) / w, (H - 2 * pad) / h);
+  if (mode === "graph") s = Math.min(s, 2.2);
+  view.s = s;
+  view.ox = W / 2 - ((x0 + x1) / 2) * s;
+  view.oy = H / 2 + ((y0 + y1) / 2) * s;
+}
+const sx = (x) => x * view.s + view.ox;
+const sy = (y) => -y * view.s + view.oy;
+function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+/* ---------- drawing ---------- */
+function draw() {
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+  if (mode === "vec" && N) drawVectors();
+  else if (mode === "graph" && G) drawGraph();
+}
+
+const PAL = 64;
+function drawVectors() {
+  const byOrder = $("byOrder").checked, accent = css("--accent");
+  const hl = new Set(star ? star.hits.map((h) => h.i) : []);
+  const dim = star ? 0.28 : 0.85;
+  const r = N > 20000 ? 1.5 : N > 3000 ? 2 : N > 800 ? 3 : 4;
+  let last = -2;
+  for (let i = 0; i < N; i++) {
+    const x = sx(px[i]), y = sy(py[i]);
+    if (x < -5 || y < -5 || x > W + 5 || y > H + 5) continue;
+    const isHl = hl.has(i);
+    ctx.globalAlpha = isHl ? 1 : dim;
+    const b = byOrder ? Math.floor((PAL - 1) * (i / Math.max(N - 1, 1))) : -1;
+    if (b !== last) { ctx.fillStyle = byOrder ? "hsl(" + (260 - 220 * (b / (PAL - 1))) + " 65% 50%)" : accent; last = b; }
+    if (N > 3000 && !isHl) ctx.fillRect(x - r, y - r, 2 * r, 2 * r);
+    else { ctx.beginPath(); ctx.arc(x, y, isHl ? r + 2 : r, 0, 6.2832); ctx.fill(); }
+  }
+  ctx.globalAlpha = 1;
+  if (star) {
+    ctx.strokeStyle = css("--star"); ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]);
+    for (const h of star.hits) { ctx.beginPath(); ctx.moveTo(sx(star.x), sy(star.y)); ctx.lineTo(sx(px[h.i]), sy(py[h.i])); ctx.stroke(); }
+    ctx.setLineDash([]);
+    drawStar(sx(star.x), sy(star.y), 11);
+  }
+  for (const i of [pinned, hover]) {
+    if (i < 0) continue;
+    ctx.strokeStyle = css("--ink"); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(sx(px[i]), sy(py[i]), r + 4, 0, 6.2832); ctx.stroke();
+  }
+}
+function drawStar(cx, cy, R) {
+  ctx.fillStyle = css("--star"); ctx.strokeStyle = css("--bg"); ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i < 10; i++) {
+    const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? R * 0.45 : R;
+    ctx.lineTo(cx + rr * Math.cos(a), cy + rr * Math.sin(a));
+  }
+  ctx.closePath(); ctx.stroke(); ctx.fill();
+}
+
+// geometry of one edge on the screen: start, control point, end (both ends on the circle borders)
+function edgeShape(e) {
+  const x0 = sx(gx[e.s]), y0 = sy(gy[e.s]), x1 = sx(gx[e.t]), y1 = sy(gy[e.t]);
+  const dx = x1 - x0, dy = y1 - y0, d = Math.sqrt(dx * dx + dy * dy) || 1;
+  const mx = (x0 + x1) / 2 - (dy / d) * e.bend * d * 0.5, my = (y0 + y1) / 2 + (dx / d) * e.bend * d * 0.5;
+  const trim = (px_, py_, cx_, cy_, r) => { const ax = cx_ - px_, ay = cy_ - py_, l = Math.sqrt(ax * ax + ay * ay) || 1; return [px_ + (ax / l) * r, py_ + (ay / l) * r]; };
+  const [sx_, sy_] = trim(x0, y0, mx, my, nodeRadius(e.s) * Math.max(0.6, Math.min(1.4, view.s)) );
+  const [ex_, ey_] = trim(x1, y1, mx, my, nodeRadius(e.t) * Math.max(0.6, Math.min(1.4, view.s)) + 2);
+  return { x0: sx_, y0: sy_, x1: ex_, y1: ey_, mx, my };
+}
+
+function drawGraph() {
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const ink = css("--ink"), bg = css("--bg"), edgeCol = css("--edge"), star_ = css("--star");
+  const nn = G.nodes.length;
+  const sel = hover >= 0 ? hover : pinned;
+  // which nodes / edges are "lit"
+  let litN = null, litE = null;
+  if (focusNodes) { litN = focusNodes; litE = focusEdges; }
+  if (sel >= 0) {
+    litN = new Set([sel]); litE = new Set();
+    G.edges.forEach((e, i) => { if (e.s === sel || e.t === sel) { litE.add(i); litN.add(e.s); litN.add(e.t); } });
+  }
+  const showRel = $("relLabels").checked;
+  ctx.lineCap = "round"; ctx.font = "11px system-ui, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+
+  G.edges.forEach((e, i) => {
+    const on = !litE || litE.has(i);
+    const sh = edgeShape(e);
+    ctx.globalAlpha = on ? 0.95 : 0.12;
+    ctx.strokeStyle = on && litE ? (focusNodes && sel < 0 ? star_ : ink) : edgeCol;
+    ctx.lineWidth = on && litE ? 2 : 1.2;
+    ctx.beginPath(); ctx.moveTo(sh.x0, sh.y0);
+    if (e.s === e.t) { ctx.arc(sh.x0 + 14, sh.y0 - 14, 14, 0, 6.2832); } else ctx.quadraticCurveTo(sh.mx, sh.my, sh.x1, sh.y1);
+    ctx.stroke();
+    if (e.s !== e.t) {                                   // arrow head
+      const ax = sh.x1 - sh.mx, ay = sh.y1 - sh.my, l = Math.sqrt(ax * ax + ay * ay) || 1, ux = ax / l, uy = ay / l;
+      ctx.beginPath(); ctx.moveTo(sh.x1, sh.y1);
+      ctx.lineTo(sh.x1 - 9 * ux + 4 * uy, sh.y1 - 9 * uy - 4 * ux); ctx.lineTo(sh.x1 - 9 * ux - 4 * uy, sh.y1 - 9 * uy + 4 * ux);
+      ctx.closePath(); ctx.fillStyle = ctx.strokeStyle; ctx.fill();
+    }
+    if (e.relation && ((showRel && on) || (litE && on && litE.size <= 12))) {
+      const lx = 0.25 * sh.x0 + 0.5 * sh.mx + 0.25 * sh.x1, ly = 0.25 * sh.y0 + 0.5 * sh.my + 0.25 * sh.y1;
+      ctx.globalAlpha = on ? 1 : 0.15;
+      ctx.lineWidth = 4; ctx.strokeStyle = bg; ctx.strokeText(e.relation.replace(/_/g, " "), lx, ly);
+      ctx.fillStyle = litE && on ? ink : css("--muted"); ctx.fillText(e.relation.replace(/_/g, " "), lx, ly);
+    }
+  });
+
+  ctx.globalAlpha = 1;
+  ctx.font = "12px system-ui, sans-serif";
+  for (let i = 0; i < nn; i++) {
+    const on = !litN || litN.has(i), rad = nodeRadius(i) * Math.max(0.6, Math.min(1.4, view.s));
+    const x = sx(gx[i]), y = sy(gy[i]);
+    ctx.globalAlpha = on ? 1 : 0.18;
+    ctx.fillStyle = typeColor(G.types.indexOf(G.nodes[i].type));
+    ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.2832); ctx.fill();
+    ctx.lineWidth = i === sel || i === pinned ? 3 : 1.5; ctx.strokeStyle = i === sel || i === pinned ? ink : bg; ctx.stroke();
+    if (focusStart && focusStart.has(i) && sel < 0) { ctx.lineWidth = 4; ctx.strokeStyle = star_; ctx.stroke(); }
+    if (nn <= 80 || G.nodes[i].deg >= 4 || (litN && on)) {
+      ctx.lineWidth = 4; ctx.strokeStyle = bg; ctx.strokeText(G.nodes[i].id, x, y + rad + 9);
+      ctx.fillStyle = ink; ctx.fillText(G.nodes[i].id, x, y + rad + 9);
+    }
+  }
+  ctx.globalAlpha = 1;
+}
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { renderLegend(); draw(); });
+
+/* ---------- sidebar details ---------- */
+function showDetail(i) {
+  const box = $("detail");
+  if (i < 0) return;
+  if (mode === "vec") { box.textContent = "#" + i + (texts ? "\n\n" + texts[i] : "\n\n(no chunk texts loaded)"); return; }
+  const n = G.nodes[i];
+  box.innerHTML = "";
+  const head = document.createElement("div");
+  const b = document.createElement("b"); b.textContent = n.id; head.append(b, " (" + n.type + ", " + n.deg + " facts)");
+  box.appendChild(head);
+  if ((n.aliases || []).length || (aliasMap[n.id] || []).length) {
+    const a = document.createElement("div"); a.className = "info";
+    a.textContent = "Also called: " + [...new Set([...(n.aliases || []), ...(aliasMap[n.id] || [])])].join(", ");
+    box.appendChild(a);
+  }
+  const passages = [];
+  G.edges.forEach((e) => {
+    if (e.s !== i && e.t !== i) return;
+    const d = document.createElement("div"); d.className = "fact";
+    const other = e.s === i ? e.target : e.source;
+    d.textContent = (e.s === i ? "→ " : "← ") + e.relation.replace(/_/g, " ") + (e.s === i ? " → " : " ← ") + other +
+      (e.chunks.length ? "   [passage " + e.chunks.map((c) => c + 1).join(",") + "]" : "");
+    box.appendChild(d);
+    e.chunks.forEach((c) => { if (!passages.includes(c)) passages.push(c); });
+  });
+  if (passages.length && G.chunks.length) {
+    const h = document.createElement("div"); h.className = "info"; h.style.marginTop = "10px"; h.textContent = "Source passages for these facts:";
+    box.appendChild(h);
+    passages.slice(0, 3).forEach((c) => {
+      const t = document.createElement("div"); t.className = "nb txt";
+      const text = G.chunks[c] || ""; t.textContent = "[" + (c + 1) + "] " + (text.length > 500 ? text.slice(0, 500) + "…" : text);
+      box.appendChild(t);
+    });
+  }
+}
+
+/* ---------- interaction ---------- */
+function nearest(mx, my) {
+  let best = -1;
+  if (mode === "vec") {
+    let bd = 12 * 12;
+    for (let i = 0; i < N; i++) {
+      const dx = sx(px[i]) - mx, dy = sy(py[i]) - my, d2 = dx * dx + dy * dy;
+      if (d2 < bd) { bd = d2; best = i; }
+    }
+  } else if (mode === "graph") {
+    let bd = Infinity;
+    for (let i = 0; i < G.nodes.length; i++) {
+      const dx = sx(gx[i]) - mx, dy = sy(gy[i]) - my, d2 = dx * dx + dy * dy, r = nodeRadius(i) * Math.max(0.6, Math.min(1.4, view.s)) + 4;
+      if (d2 < r * r && d2 < bd) { bd = d2; best = i; }
+    }
+  }
+  return best;
+}
+let drag = null, dragNode = -1;
+cv.addEventListener("mousedown", (e) => {
+  const r = cv.getBoundingClientRect(), i = (mode ? nearest(e.clientX - r.left, e.clientY - r.top) : -1);
+  if (mode === "graph" && i >= 0) { dragNode = i; gfix[i] = 1; drag = { moved: false, node: true }; }
+  else drag = { x: e.clientX, y: e.clientY, ox: view.ox, oy: view.oy, moved: false };
+  cv.classList.add("drag");
+});
+window.addEventListener("mouseup", (e) => {
+  if (drag && !drag.moved && mode) {
+    const r = cv.getBoundingClientRect(), i = nearest(e.clientX - r.left, e.clientY - r.top);
+    pinned = i; if (i >= 0) showDetail(i); draw();
+  }
+  if (dragNode >= 0) { gfix[dragNode] = 0; dragNode = -1; }
+  drag = null; cv.classList.remove("drag");
+});
+window.addEventListener("mousemove", (e) => {
+  if (!mode) return;
+  const r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+  if (drag) {
+    if (drag.node) {
+      drag.moved = true;
+      gx[dragNode] = (mx - view.ox) / view.s; gy[dragNode] = -(my - view.oy) / view.s;
+      kick(0.3); draw();
+      return;
+    }
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
+    if (drag.moved) { view.ox = drag.ox + dx; view.oy = drag.oy + dy; draw(); }
+    return;
+  }
+  if (e.target !== cv) return;
+  const i = nearest(mx, my);
+  cv.classList.toggle("node", mode === "graph" && i >= 0);
+  if (i !== hover) { hover = i; if (i >= 0) showDetail(i); else if (pinned >= 0) showDetail(pinned); draw(); }
+});
+cv.addEventListener("wheel", (e) => {
+  if (!mode) return;
+  e.preventDefault();
+  const r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+  const f = Math.exp(-e.deltaY * 0.0015);
+  view.ox = mx - (mx - view.ox) * f; view.oy = my - (my - view.oy) * f; view.s *= f; draw();
+}, { passive: false });
+cv.addEventListener("dblclick", () => { fit(); draw(); });
+$("byOrder").onchange = () => { renderLegend(); draw(); };
+$("relLabels").onchange = draw;
+
+/* ---------- questions ---------- */
+function findEntities(question) {
+  const q = " " + nameKey(question) + " ";
+  const names = new Map();
+  for (const n of G.nodes) names.set(n.id, new Set([n.id, ...(n.aliases || [])]));
+  for (const [canon, alts] of Object.entries(aliasMap)) if (names.has(canon)) alts.forEach((a) => names.get(canon).add(a));
+  const found = new Set(), owner = new Map();
+  for (const [nid, forms] of names) {
+    for (const form of forms) {
+      const k = nameKey(form);
+      if (k && q.includes(" " + k + " ")) found.add(nid);
+      for (const w of k.split(" ")) if (w.length > 2) { if (!owner.has(w)) owner.set(w, new Set()); owner.get(w).add(nid); }
+    }
+  }
+  for (const w of new Set(q.trim().split(" "))) { const o = owner.get(w); if (o && o.size === 1) found.add([...o][0]); }
+  return found;
+}
+
+function askGraph() {
+  const q = $("q").value.trim();
+  const box = $("nbs"); box.innerHTML = "";
+  $("nbTitle").hidden = false; $("nbTitle").textContent = "Facts for your question";
+  if (!q) { focusNodes = focusEdges = focusStart = null; $("nbTitle").hidden = true; draw(); return; }
+  const found = findEntities(q), hops = Math.max(1, Math.min(4, parseInt($("hops").value) || 2));
+  if (!found.size) {
+    focusNodes = focusEdges = focusStart = null;
+    const d = document.createElement("div"); d.className = "info";
+    d.textContent = "No entity from the question was recognised. A graph RAG would send the whole graph (" + G.edges.length + " facts). Try a name or a nickname, or load aliases.json.";
+    box.appendChild(d); draw(); return;
+  }
+  const startIdx = new Set([...found].map((id) => G.idx.get(id)));
+  const seen = new Set(startIdx), picked = new Map();
+  let frontier = new Set(startIdx);
+  for (let h = 1; h <= hops; h++) {
+    const nxt = new Set();
+    G.edges.forEach((e, i) => { if ((frontier.has(e.s) || frontier.has(e.t)) && !picked.has(i)) { picked.set(i, h); nxt.add(e.s); nxt.add(e.t); } });
+    frontier = new Set([...nxt].filter((x) => !seen.has(x))); nxt.forEach((x) => seen.add(x));
+  }
+  focusEdges = new Set(picked.keys());
+  focusStart = startIdx;
+  focusNodes = new Set(startIdx);
+  focusEdges.forEach((i) => { focusNodes.add(G.edges[i].s); focusNodes.add(G.edges[i].t); });
+  pinned = -1;
+  const head = document.createElement("div"); head.className = "info";
+  head.textContent = "Entities found: " + [...found].sort().join(", ") + ". Facts within " + hops + " hop(s): " + picked.size + " (the chat uses at most 40).";
+  box.appendChild(head);
+  [...picked.keys()].sort((a, b) => picked.get(a) - picked.get(b)).forEach((i) => {
+    const e = G.edges[i], d = document.createElement("div"); d.className = "nb";
+    const b = document.createElement("b"); b.textContent = "hop " + picked.get(i) + (e.chunks.length ? " · passage " + e.chunks.map((c) => c + 1).join(",") : "");
+    const t = document.createElement("div"); t.textContent = e.source + " — " + e.relation.replace(/_/g, " ") + " → " + e.target;
+    d.append(b, t); d.onclick = () => { pinned = e.s; showDetail(e.s); draw(); };
+    box.appendChild(d);
+  });
+  draw();
+}
+
+async function askVectors() {
+  const q = $("q").value.trim(); if (!q || !N) return;
+  $("askBtn").disabled = true;
+  try {
+    const base = $("api").value.replace(/\/+$/, "");
+    const r = await fetch(base + "/v1/embeddings", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ input: q }) });
+    if (!r.ok) throw new Error("Server returned " + r.status);
+    const emb = (await r.json()).data[0].embedding;
+    if (emb.length !== D) throw new Error("The server's embedding has " + emb.length + " dimensions but your file has " + D + ". Use the same embedding model for both.");
+    let s = 0; for (const v of emb) s += v * v; s = Math.sqrt(s) || 1;
+    const qv = Float32Array.from(emb, (v) => v / s);
+    const scores = new Array(N);
+    for (let i = 0; i < N; i++) { let d = 0; for (let j = 0; j < D; j++) d += qv[j] * X[i * D + j]; scores[i] = { i, score: d }; }
+    scores.sort((a, b) => b.score - a.score);
+    const k = Math.max(1, Math.min(20, parseInt($("k").value) || 5));
+    const [x, y] = project(qv);
+    star = { x, y, hits: scores.slice(0, k) };
+    const box = $("nbs"); box.innerHTML = "";
+    $("nbTitle").hidden = false; $("nbTitle").textContent = "Nearest to your question";
+    star.hits.forEach((h, n) => {
+      const d = document.createElement("div"); d.className = "nb";
+      const b = document.createElement("b"); b.textContent = (n + 1) + ". chunk #" + h.i + " · similarity " + h.score.toFixed(3);
+      const t = document.createElement("div"); t.className = "txt";
+      const full = texts ? texts[h.i] : "(no chunk texts loaded)";
+      t.textContent = full.length > 400 ? full.slice(0, 400) + "…" : full;
+      d.append(b, t); d.onclick = () => { pinned = h.i; showDetail(h.i); draw(); };
+      box.appendChild(d);
+    });
+    fit(); draw();
+  } catch (err) {
+    $("info").textContent = err.message + (err instanceof TypeError ? " (is KoboldCPP running at " + $("api").value + "?)" : "");
+    $("info").classList.add("err");
+  } finally { $("askBtn").disabled = false; }
+}
+function ask() { if (mode === "vec") askVectors(); else if (mode === "graph") askGraph(); }
+$("askBtn").onclick = ask;
+$("q").addEventListener("keydown", (e) => { if (e.key === "Enter") ask(); });
+
+resize();
+</script>
+</body>
+</html>
