@@ -142,7 +142,7 @@ You can use any other `.gguf` chat model too. The start script lists every `.ggu
 ### 4.3 First start on each system
 
 - **Windows:** double-click `start_model.bat`. If SmartScreen warns about an unknown program, choose *More info → Run anyway* (only if you downloaded it from the official releases page).
-- **macOS:** open Terminal and run `chmod +x mac/koboldcpp-mac-arm64 mac/start_model.command` once, then double-click `start_model.command`. If macOS blocks the program, open *System Settings → Privacy & Security* and allow it, or right-click the file and choose *Open*.
+- **macOS:** open Terminal and run `chmod +x mac/koboldcpp-mac-arm64 mac/start_model.command` once, then double-click `start_model.command`. MacOS blocks koboldcpp-mac-arm64, open *System Settings → Privacy & Security* and allow it, or right-click the file and choose *Open*. Then rerun the command to run the localhost. 
 - **Linux:** `chmod +x linux/koboldcpp-linux-x64 linux/start_model.sh`, then run `./start_model.sh`.
 
 **exFAT sticks lose the "executable" permission** on macOS and Linux. If the script says *permission denied*, run it with `bash start_model.sh`. If the KoboldCPP program itself cannot start, copy the whole `LLM_LAB` folder to your computer's disk and run `chmod +x` there.
