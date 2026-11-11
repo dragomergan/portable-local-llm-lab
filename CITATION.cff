@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this lab kit in your teaching, workshops, or research, please cite it using the metadata below."
+type: software
+title: "Portable Local LLM Lab: Offline LLM, RAG, Terminology, and Graph Workflows for Translation Studies"
+version: "1.0.0"
+date-released: "2026-10-26"
+license: MIT
+repository-code: "https://github.com/dragomergan/portable-local-llm-lab"
+url: "https://github.com/dragomergan/portable-local-llm-lab"
+authors:
+  - family-names: "Mergan"
+    given-names: "Hüseyin"
+    affiliation: "Department of Translation and Interpreting Studies, Boğaziçi University"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # Uncomment and add your ORCID if you have one
+abstract: >-
+  A zero-dependency, offline-first educational toolkit for running quantized
+  local Large Language Models (Gemma 3, Qwen3) and embedding models
+  (EmbeddingGemma) from a USB drive or local folder via KoboldCPP. Designed for
+  university translation technology courses, linguistics labs, and privacy-sensitive
+  localization workflows, the kit covers structured prompting, OpenAI-compatible
+  REST API calls using the Python standard library, passage-level Vector RAG,
+  concept-oriented ISO TBX terminology RAG, Graph RAG with entity alias
+  resolution, and browser-based PCA embedding and knowledge-graph visualization.
+keywords:
+  - translation-studies
+  - translation-technology
+  - localization
+  - local-llm
+  - retrieval-augmented-generation
+  - graph-rag
+  - terminology-management
+  - tbx
+  - computer-aided-translation
+  - ai-pedagogy
