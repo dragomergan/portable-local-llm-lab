@@ -27,4 +27,4 @@ By contributing, you agree that your contribution is released under the license 
 
 ## Disclaimer
 
-Much of this repository was created with the help of AI or by vibecoding. Review code before you rely on it.
+Designed and architected for university translation technology labs using AI-assisted development; written purely against the Python standard library so every line remains inspectable for teaching and research.
