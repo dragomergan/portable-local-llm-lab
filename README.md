@@ -519,7 +519,7 @@ How to start: open an **Issue** on GitHub to ask a question, report a problem or
 
 ## 16. Licenses
 
-- **This repository's code and the example texts it contains:** add your chosen license here (for example MIT for code). The story `lore.txt` and `sample_glossary_en_tr.tbx` were written for this kit.
+- **This repository's code and the example texts it contains:** [License] (https://github.com/dragomergan/portable-local-llm-lab/blob/main/LICENSE). The story `lore.txt` and `sample_glossary_en_tr.tbx` were written for this kit.
 - **KoboldCPP:** AGPL-3.0, see <https://github.com/LostRuins/koboldcpp>.
 - **Gemma models (Gemma 3 4B, EmbeddingGemma):** [Gemma Terms of Use](https://ai.google.dev/gemma/terms).
 - **Qwen3 4B:** Apache 2.0, see the [model page](https://huggingface.co/Qwen/Qwen3-4B-GGUF).
