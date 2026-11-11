@@ -12,7 +12,7 @@ The kit was built for a university course in translation studies, but nothing in
 
 Everything runs on one small program ([KoboldCPP](https://github.com/LostRuins/koboldcpp)) that serves a chat model and an embedding model on `http://localhost:5001`.
 
-> **Disclaimer:** This repository, its scripts and its examples were created with the help of AI or by vibecoding. Review the code before you rely on it, and test it with your own models and data.
+> **Disclaimer:** Designed and architected for university translation technology labs using AI-assisted development; written purely against the Python standard library so every line remains inspectable for teaching and research.
 
 > **Not included:** the model files, the KoboldCPP program, and any copyrighted text or glossary. You download them yourself (links below). See [Licenses](#licenses).
 
