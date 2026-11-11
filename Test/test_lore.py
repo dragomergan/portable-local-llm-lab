@@ -12,10 +12,10 @@ Modes:
 
 Usage:
     python test_lore.py                              # asks for the folder, then you type questions
-    python test_lore.py --data ../data/lore
-    python test_lore.py --data ../data/lore --run-key              # run the 10 class questions in every mode
-    python test_lore.py --data ../data/lore --run-key --report lore_report.md
-    python test_lore.py --data ../data/lore --mode graph -v        # show the facts that were sent
+    python test_lore.py --data ../data/Lore
+    python test_lore.py --data ../data/Lore --run-key              # run the 10 class questions in every mode
+    python test_lore.py --data ../data/Lore --run-key --report lore_report.md
+    python test_lore.py --data ../data/Lore --mode graph -v        # show the facts that were sent
 
 Start KoboldCPP first (chat model; plus embedding model for the plain mode). Needs rag_common.py in the same folder.
 """
