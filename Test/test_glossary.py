@@ -189,7 +189,7 @@ def main():
     ap.add_argument("--no-think", action="store_true", help="add /no_think (Qwen3)")
     args = ap.parse_args()
 
-    db = load_db_or_exit(ask_for_folder(args.data, "../data/glossary", "Folder with vectors.npy and chunks.json"))
+    db = load_db_or_exit(ask_for_folder(args.data, "../data/terminology", "Folder with vectors.npy and chunks.json"))
     index, source, target = build_index(db)
     print("Languages: %s -> %s. %d searchable source terms." % (source, target, len(index)))
     ctx = {"db": db, "index": index, "source": source, "target": target, "server": args.server,
